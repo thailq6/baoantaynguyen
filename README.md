@@ -19,3 +19,4 @@ Chạy `npm install`, sau đó `npm run dev`.
 
 `config/`, `types/` và `lib/quote/` là nguồn dữ liệu và logic duy nhất. Form chưa kết nối backend thật. Môi trường hiện tại chặn tải dependency npm, nên cần chạy các lệnh kiểm tra sau khi có quyền registry.
 "# baoantaynguyen" 
+"# baoantaynguyen" 
