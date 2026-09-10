@@ -36,7 +36,10 @@ export function ProductCard({ product }: Props) {
   const detail = productDetails[slug];
 
   return (
-    <article className="group flex flex-col justify-between rounded-[18px] border border-[#cce5e1] bg-[#ffffff] p-5 transition duration-300 hover:border-[#006b66]/60 hover:shadow-[0_14px_35px_rgba(0,56,53,0.1)] bic-btn-active md:p-6">
+    <Link
+      href={`/san-pham/${slug}`}
+      className="group flex flex-col justify-between rounded-[18px] border border-[#cce5e1] bg-[#ffffff] p-5 transition duration-300 hover:border-[#006b66]/60 hover:shadow-[0_14px_35px_rgba(0,56,53,0.1)] active:scale-[0.99] md:p-6 cursor-pointer"
+    >
       <div>
         {/* Category Header */}
         <div className="mb-4 flex items-center justify-between">
@@ -49,24 +52,18 @@ export function ProductCard({ product }: Props) {
         </div>
 
         {/* Product Visual */}
-        <Link
-          href={`/san-pham/${slug}`}
-          aria-label={`Xem chi tiết ${name}`}
-          className="my-3 block overflow-hidden rounded-[12px] bg-[#f4faf8] aspect-[4/3] p-2"
-        >
+        <div className="my-3 block overflow-hidden rounded-[12px] bg-[#f4faf8] aspect-[4/3] p-2">
           <img
             src={imageSrc}
             alt={name}
             className="h-full w-full rounded-[8px] object-cover shadow-[0_8px_20px_rgba(0,56,53,0.12)] transition-transform duration-500 group-hover:scale-105"
           />
-        </Link>
+        </div>
 
         {/* Content */}
-        <Link href={`/san-pham/${slug}`} className="block">
-          <h3 className="mt-4 text-[20px] font-bold tracking-tight text-[#103b3b] transition-colors group-hover:text-[#006b66]">
-            {name}
-          </h3>
-        </Link>
+        <h3 className="mt-4 text-[20px] font-bold tracking-tight text-[#103b3b] transition-colors group-hover:text-[#006b66]">
+          {name}
+        </h3>
         <p className="mt-2 text-[16px] leading-relaxed text-[#577572]">
           {desc}
         </p>
@@ -94,15 +91,11 @@ export function ProductCard({ product }: Props) {
       </div>
 
       <div className="mt-6 pt-4 border-t border-[#eaf5f2]">
-        <Link
-          href={`/san-pham/${slug}`}
-          className="inline-flex items-center gap-2 text-[16px] font-bold text-[#006b66] transition-all group-hover:gap-3"
-        >
+        <div className="flex w-full items-center justify-center gap-2 rounded-full bg-[#006b66] py-3.5 px-4 text-[15px] font-bold text-white shadow-sm transition-all duration-200 group-hover:bg-[#005450] group-hover:shadow-md">
           <span>Tính phí & cấp đơn</span>
           <Icon name="arrow-right" size={16} />
-        </Link>
+        </div>
       </div>
-    </article>
+    </Link>
   );
 }
-
