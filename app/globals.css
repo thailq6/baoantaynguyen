@@ -2,15 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { --primary:#006b66; --primary-soft:#0b8f86; --primary-deep:#004d4a; --on-primary:#fff; --ink:#103b3b; --ink-strong:#082e2d; --body:#456464; --mute:#6f8585; --hairline:#d5e5e2; --hairline-soft:#b8ceca; --canvas:#f7fbfa; --canvas-soft:#fff; --canvas-text-soft:#edf7f5; --gold:#f5ab19; --mint:#e7f5f1; --cream:#f7fbfa; --paper:#fff; --forest:#103b3b; --terracotta:#006b66; --deep:#004d4a; --muted:#456464; --line:#d5e5e2; }
+:root {
+  --font-sans: Inter, system-ui, -apple-system, "SF Pro Text", "Segoe UI", sans-serif;
+  --bic-teal: #006b66;
+  --bic-teal-hover: #005450;
+  --bic-teal-focus: #007a73;
+  --bic-gold: #f5ab19;
+  --bic-forest: #003835;
+  --bic-forest-light: #084c47;
+  --bic-mint: #eaf5f2;
+  --bic-ice: #f4faf8;
+  --bic-ink: #103b3b;
+  --bic-muted: #577572;
+  --bic-border: #cce5e1;
+}
 
 * {
   box-sizing: border-box;
 }
 
-html { scroll-behavior:smooth; background:var(--canvas); color:var(--ink); }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bic-ice);
+  color: var(--bic-ink);
+}
 
-body { margin:0; background:var(--canvas); color:var(--ink); font-family:"Trebuchet MS",Tahoma,sans-serif; -webkit-font-smoothing:antialiased; }
+body {
+  margin: 0;
+  background-color: var(--bic-ice);
+  color: var(--bic-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
 
 a {
   color: inherit;
@@ -22,12 +48,26 @@ button, input, select, textarea {
 }
 
 ::selection {
-  background: var(--primary);
-  color: #fff;
+  background: var(--bic-teal);
+  color: #ffffff;
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--bic-teal-focus);
   outline-offset: 2px;
+}
+
+/* BIC Display Tight Tracking */
+.bic-headline {
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+/* BIC Button Micro-interaction */
+.bic-btn-active {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s ease;
+}
+.bic-btn-active:active {
+  transform: scale(0.95);
 }
 

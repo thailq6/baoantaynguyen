@@ -7,7 +7,7 @@ export default function ContactPage() {
   return (
     <InteriorPage
       eyebrow="KẾT NỐI TƯ VẤN"
-      title={<>Cần hỗ trợ tư vấn bảo hiểm?<br /><span className="text-[#006b66]">Đội ngũ AI và chuyên viên luôn sẵn sàng.</span></>}
+      title={<>Cần hỗ trợ tư vấn bảo hiểm?<br /><span className="text-[#006b66]">Đội ngũ chuyên viên luôn sẵn sàng.</span></>}
       intro="Để lại thông tin hoặc liên hệ trực tiếp qua hotline/Zalo để nhận phản hồi trong vòng 3 phút."
     >
       <section className="mx-auto grid max-w-[1240px] gap-12 px-5 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
@@ -22,17 +22,17 @@ export default function ContactPage() {
           </div>
 
           <dl className="space-y-6 text-sm">
-            <div className="rounded-[8px] border border-[#d5e5e2] bg-[#ffffff] p-4">
+            <div className="rounded-[18px] border border-[#cce5e1] bg-[#ffffff] p-4">
               <dt className="font-mono text-[11px] font-semibold tracking-wider text-[#006b66]">HOTLINE TRỰC TUYẾN</dt>
-              <dd className="mt-1 font-mono text-lg font-bold text-[#103b3b]">0949 013 668</dd>
+              <dd className="mt-1 font-mono text-lg font-bold text-[#103b3b]">0396998765</dd>
             </div>
-            <div className="rounded-[8px] border border-[#d5e5e2] bg-[#ffffff] p-4">
+            <div className="rounded-[18px] border border-[#cce5e1] bg-[#ffffff] p-4">
               <dt className="font-mono text-[11px] font-semibold tracking-wider text-[#006b66]">ZALO OA CHÍNH THỨC</dt>
-              <dd className="mt-1 text-base text-[#103b3b]">Bảo Hiểm AI - BIC</dd>
+              <dd className="mt-1 text-base font-semibold text-[#103b3b]">Bảo An Tây Nguyên</dd>
             </div>
-            <div className="rounded-[8px] border border-[#d5e5e2] bg-[#ffffff] p-4">
+            <div className="rounded-[18px] border border-[#cce5e1] bg-[#ffffff] p-4">
               <dt className="font-mono text-[11px] font-semibold tracking-wider text-[#006b66]">ĐỐI TÁC BẢO HIỂM</dt>
-              <dd className="mt-1 text-sm text-[#456464]">Tổng Công ty Bảo hiểm BIDV (BIC)</dd>
+              <dd className="mt-1 text-sm text-[#577572]">Tổng Công ty Bảo hiểm BIDV (BIC)</dd>
             </div>
           </dl>
         </div>
@@ -44,5 +44,4 @@ export default function ContactPage() {
     </InteriorPage>
   );
 }
-
 

@@ -15,17 +15,17 @@ export function InteriorPage({ eyebrow, title, intro, children }: Props) {
       <SiteHeader />
       <main>
         <section className="border-b border-[#d5e5e2] bg-[#f7fbfa]">
-          <div className="mx-auto max-w-[1240px] px-5 py-16 lg:px-8 lg:py-20">
-            <Link href="/" className="inline-flex items-center text-xs text-[#006b66] transition-colors hover:text-[#0b8f86]">
+          <div className="mx-auto max-w-[1240px] px-5 py-16 lg:px-8 lg:py-24">
+            <Link href="/" className="inline-flex items-center text-[14px] text-[#006b66] transition-colors hover:text-[#0b8f86]">
               ← Quay lại trang chủ
             </Link>
-            <p className="mt-8 font-mono text-[13px] font-semibold uppercase tracking-[2.52px] text-[#006b66]">
+            <p className="mt-8 font-sans text-[13px] font-bold uppercase tracking-[0.15em] text-[#006b66]">
               {eyebrow}
             </p>
-            <h1 className="mt-4 max-w-3xl text-[36px] font-normal leading-[1.1] tracking-[-0.9px] text-[#103b3b] lg:text-[48px]">
+            <h1 className="mt-4 max-w-4xl text-[42px] font-bold leading-[1.08] tracking-[-0.025em] text-[#103b3b] sm:text-[54px] lg:text-[62px]">
               {title}
             </h1>
-            <p className="mt-6 max-w-2xl text-[16px] leading-relaxed text-[#456464]">
+            <p className="mt-6 max-w-2xl text-[18px] leading-[1.5] text-[#456464]">
               {intro}
             </p>
           </div>
@@ -36,5 +36,3 @@ export function InteriorPage({ eyebrow, title, intro, children }: Props) {
     </div>
   );
 }
-
-

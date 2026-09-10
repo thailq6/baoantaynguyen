@@ -14,7 +14,7 @@ export default function GuidePage() {
     <InteriorPage
       eyebrow="CẨM NANG BẢO HIỂM"
       title={<>Kiến thức bảo hiểm chuẩn xác,<br /><span className="text-[#006b66]">giải thích minh bạch và dễ hiểu.</span></>}
-      intro="Tổng hợp thông tin pháp lý, kinh nghiệm mua bảo hiểm và hướng dẫn bồi thường chuẩn xác từ BIC."
+      intro="Tổng hợp thông tin pháp lý, kinh nghiệm mua bảo hiểm và hướng dẫn bồi thường chuẩn xác từ Bảo An Tây Nguyên."
     >
       <section className="mx-auto grid max-w-[1240px] gap-6 px-5 py-16 md:grid-cols-3 lg:px-8">
         {posts.map(([n, t, d]) => (
@@ -25,7 +25,7 @@ export default function GuidePage() {
               <p className="mt-3 text-sm leading-relaxed text-[#6f8585]">{d}</p>
             </div>
             <Link href="/lien-he" className="mt-6 inline-flex text-xs font-semibold text-[#006b66] hover:text-[#0b8f86]">
-              Hỏi AI về chủ đề này ↗
+              Tư vấn trực tuyến ↗
             </Link>
           </article>
         ))}
