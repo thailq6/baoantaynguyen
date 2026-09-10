@@ -1,0 +1,21 @@
+# Bảo An Tây Nguyên
+
+Bản Next.js App Router gồm trang chủ, 11 route nội dung, hệ thống component Tailwind, báo giá nhanh hard-code và form tư vấn mô phỏng.
+
+## Chạy bản demo
+
+Chạy `npm install`, sau đó `npm run dev`.
+
+## Cấu hình cần thay thế
+
+- `[HOTLINE]`
+- `[ZALO_URL]`
+- `[EMAIL]`
+- `[ĐỊA_CHỈ]`
+- `[GIỜ_LÀM_VIỆC]`
+- `[FACEBOOK_URL]`
+
+## Lưu ý
+
+`config/`, `types/` và `lib/quote/` là nguồn dữ liệu và logic duy nhất. Form chưa kết nối backend thật. Môi trường hiện tại chặn tải dependency npm, nên cần chạy các lệnh kiểm tra sau khi có quyền registry.
+"# baoantaynguyen" 
