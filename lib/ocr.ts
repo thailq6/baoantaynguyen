@@ -176,24 +176,50 @@ async function preprocessImageForOcr(file: File): Promise<string | File> {
 
 /**
  * Client-side OCR Document Processor
+ *
+ * First attempts to call Google Cloud Vision API endpoint (/api/ocr/google-vision).
+ * If GOOGLE_VISION_API_KEY is configured and API succeeds, uses Google Vision text.
+ * Otherwise, seamlessly falls back to local Canvas-preprocessed Tesseract.js engine.
  */
 export async function processOcrDocument(file: File): Promise<OcrResult> {
   let rawText = "";
 
   if (typeof window !== "undefined") {
+    // 1. Try Google Cloud Vision API Route
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/ocr/google-vision", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.success && data?.rawText) {
+          console.info("[OCR] Successfully recognized document via Google Cloud Vision API");
+          return parseRegistrationDocument(data.rawText);
+        }
+      }
+    } catch (googleErr) {
+      console.warn("[OCR] Google Cloud Vision API unavailable, using Tesseract fallback:", googleErr);
+    }
+
+    // 2. Fallback to Local Canvas-Preprocessed Tesseract.js Engine
     try {
       const processedImage = await preprocessImageForOcr(file);
       const Tesseract = await import("tesseract.js");
       const res = await Tesseract.recognize(processedImage, "vie+eng");
       rawText = res?.data?.text || "";
     } catch (err) {
-      console.warn("[OCR] Preprocessing failed, trying original:", err);
+      console.warn("[OCR] Preprocessing failed, trying original file:", err);
       try {
         const Tesseract = await import("tesseract.js");
         const res = await Tesseract.recognize(file, "vie+eng");
         rawText = res?.data?.text || "";
       } catch (fallbackErr) {
-        console.warn("[OCR] Fallback recognition failed:", fallbackErr);
+        console.warn("[OCR] Tesseract fallback recognition failed:", fallbackErr);
       }
     }
   }

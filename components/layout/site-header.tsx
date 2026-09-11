@@ -55,7 +55,7 @@ export function SiteHeader() {
             <span>SĐT: 0916 201 085</span>
           </a>
           <Link
-            href="/bao-gia"
+            href="/mua-bao-hiem"
             className="inline-flex items-center justify-center rounded-full bg-[#0066cc] px-6 py-2.5 text-[14px] font-semibold text-white transition-transform duration-150 hover:bg-[#0052b3] active:scale-95 shadow-sm"
           >
             Mua ngay

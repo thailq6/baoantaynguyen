@@ -12,6 +12,7 @@ import {
   type InsuranceCertificate,
 } from "../../lib/certificate";
 import { ECertificateCard } from "../../components/certificate/e-certificate-card";
+import Link from "next/link";
 import { Icon } from "../../components/ui/icon";
 
 export default function TienIchPage() {
@@ -48,9 +49,26 @@ export default function TienIchPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4f8fd] py-10 md:py-16">
+    <main className="min-h-screen bg-[#f4f8fd] py-8 md:py-14">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        {/* Page Header */}
+        {/* Top Header Navigation & Back Button */}
+        <div className="flex items-center justify-between border-b border-[#cce0f5] pb-4 mb-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-xs font-bold text-[#0066cc] border border-[#cce0f5] shadow-sm hover:bg-[#eef6ff] transition"
+          >
+            <Icon name="arrow" size={14} className="rotate-180" />
+            <span>Quay lại Trang chủ</span>
+          </Link>
+
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#4a6785]">
+            <Link href="/" className="hover:text-[#0066cc]">Trang chủ</Link>
+            <span>&rsaquo;</span>
+            <span className="text-[#0066cc]">Cổng Tiện Ích &amp; Tra Cứu</span>
+          </div>
+        </div>
+
+        {/* Page Header Title */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#0066cc]/30 bg-[#eef6ff] px-4 py-1 text-xs font-bold text-[#0066cc]">
             <Icon name="sparkles" size={14} /> CỔNG TIỆN ÍCH PHƯƠNG TIỆN &amp; BẢO HIỂM

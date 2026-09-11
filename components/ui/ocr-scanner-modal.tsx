@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { processOcrDocument, type OcrResult } from "../../lib/ocr";
+import { saveOcrResult } from "../../lib/ocr-store";
 import { Icon } from "./icon";
 
 type Props = {
@@ -28,6 +29,7 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
     try {
       const result = await processOcrDocument(selectedFile);
       setOcrData(result);
+      saveOcrResult(result);
     } finally {
       setIsScanning(false);
     }
@@ -70,6 +72,7 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
       Math.round((updated.fieldsFound / updated.fieldsTotal) * 100) / 100;
 
     setOcrData(updated);
+    saveOcrResult(updated);
   }
 
   function handleApplyData() {

@@ -59,9 +59,25 @@ export function QuoteCatalog() {
     }
   }
 
+  const slugToProductTypeMap: Record<string, string> = {
+    "bao-hiem-o-to": "auto",
+    "bao-hiem-xe-may": "motorbike",
+    "bao-hiem-suc-khoe": "health",
+    "bao-hiem-nhan-tho": "life",
+    "bao-hiem-tai-nan": "home",
+    "bao-hiem-du-lich": "travel",
+  };
+
   function handleSelectProduct(slug: string) {
     setSelectedSlug(slug);
-    scrollToQuote();
+    const productType = slugToProductTypeMap[slug] || "auto";
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("batn_product_select", { detail: productType }));
+      const el = document.getElementById("tinh-phi") || document.getElementById("quick-quote-box");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   }
 
   return (

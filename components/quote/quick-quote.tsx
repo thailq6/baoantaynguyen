@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { calculateQuote, formatVnd } from "../../lib/quote";
 import { quotePlans } from "../../config/quote-plans";
 import type { QuoteInput, QuoteProductType, QuoteResult } from "../../types/quote";
 import { Icon } from "../ui/icon";
 import { OcrScannerModal } from "../ui/ocr-scanner-modal";
 import { ECertificateCard } from "../certificate/e-certificate-card";
-import { generateMockCertificate, sampleCertificates, type InsuranceCertificate } from "../../lib/certificate";
+import { generateMockCertificate, type InsuranceCertificate } from "../../lib/certificate";
 import type { OcrResult } from "../../lib/ocr";
 
 type Props = {
@@ -17,14 +18,24 @@ type Props = {
 };
 
 const productOptions: Array<{ value: QuoteProductType; label: string }> = [
-  { value: "auto", label: "Ô tô" },
-  { value: "motorbike", label: "Xe máy" },
-  { value: "health", label: "Sức khỏe & tai nạn" },
-  { value: "travel", label: "Du lịch" },
-  { value: "home", label: "Nhà ở" },
-  { value: "life", label: "Nhân thọ" },
-  { value: "business", label: "Doanh nghiệp, tài sản & hàng hóa" },
+  { value: "auto", label: "Bảo hiểm Ô tô" },
+  { value: "motorbike", label: "Bảo hiểm Xe máy" },
+  { value: "health", label: "Bảo hiểm Sức khỏe & tai nạn" },
+  { value: "travel", label: "Bảo hiểm Du lịch" },
+  { value: "home", label: "Bảo hiểm Tai nạn nhà ở" },
+  { value: "life", label: "Bảo hiểm Nhân thọ" },
+  { value: "business", label: "Bảo hiểm Doanh nghiệp & hàng hóa" },
 ];
+
+const productSlugMap: Record<QuoteProductType, string> = {
+  auto: "bao-hiem-o-to",
+  motorbike: "bao-hiem-xe-may",
+  health: "bao-hiem-suc-khoe",
+  travel: "bao-hiem-du-lich",
+  life: "bao-hiem-nhan-tho",
+  home: "bao-hiem-tai-nan",
+  business: "bao-hiem-o-to",
+};
 
 const planOptions = [
   { value: "basic", label: "Cơ bản" },
@@ -58,6 +69,22 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
   const [isOcrOpen, setIsOcrOpen] = useState(false);
   const [activeCert, setActiveCert] = useState<InsuranceCertificate | null>(null);
 
+  // Sync when initialProductType changes or custom selection event fires
+  useEffect(() => {
+    changeProduct(initialProductType);
+  }, [initialProductType]);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const type = (e as CustomEvent).detail as QuoteProductType;
+      if (type && productOptions.some((p) => p.value === type)) {
+        changeProduct(type);
+      }
+    };
+    window.addEventListener("batn_product_select", handler);
+    return () => window.removeEventListener("batn_product_select", handler);
+  }, []);
+
   function handleOcrApply(data: OcrResult) {
     if (data.vehicleType === "motorbike") {
       setProductType("motorbike");
@@ -77,9 +104,9 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
 
   function handleOpenSampleCert() {
     const cert = generateMockCertificate(
-      String(fields.scannedPlate || "47A-888.99"),
-      String(fields.scannedOwner || "NGUYỄN VĂN AN"),
-      productType === "auto" ? "Ô tô dưới 6 chỗ" : "Xe máy mô tô 2 bánh"
+      String(fields.scannedPlate || "47A-349.54"),
+      String(fields.scannedOwner || "TRẦN TRỌNG ANH"),
+      productType === "auto" ? "Ô tô chở người dưới 6 chỗ" : "Xe máy mô tô 2 bánh"
     );
     setActiveCert(cert);
   }
@@ -335,6 +362,7 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
           onTogglePlanDetails={() => setShowPlanDetails((current) => !current)}
           onShowCertificate={handleOpenSampleCert}
           plan={selectedPlan}
+          productSlug={productSlugMap[productType]}
         />
       )}
 
@@ -363,12 +391,14 @@ function QuoteResultView({
   onTogglePlanDetails,
   onShowCertificate,
   plan,
+  productSlug,
 }: {
   result: QuoteResult;
   showPlanDetails: boolean;
   onTogglePlanDetails: () => void;
   onShowCertificate: () => void;
   plan: (typeof quotePlans)[QuoteProductType]["basic"];
+  productSlug: string;
 }) {
   return (
     <div className="mt-6 border-t border-dashed border-[#cce0f5] pt-6">
@@ -383,16 +413,38 @@ function QuoteResultView({
         <div className="flex justify-between gap-4"><span>VAT (10%)</span><strong className="text-[#0b2341]">{formatVnd(result.vatAmount)}</strong></div>
         <div className="flex justify-between gap-4 border-t border-[#cce0f5] pt-2 font-bold text-[#0066cc]"><span>Tổng phí dự kiến</span><strong>{formatVnd(result.totalPremium)}</strong></div>
       </div>
-      <div className="mt-4 grid gap-2 sm:grid-cols-2">
-        <button type="button" onClick={onTogglePlanDetails} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0066cc] px-4 py-2.5 text-[14px] font-semibold text-white hover:bg-[#0052b3]">
-          {showPlanDetails ? "Ẩn chi tiết gói" : "Xem bảng giá"}
-          <Icon name={showPlanDetails ? "close" : "arrow-right"} size={15} />
-        </button>
-        <button type="button" onClick={onShowCertificate} className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-[14px] font-semibold text-emerald-800 hover:bg-emerald-100 transition">
-          <Icon name="shield" size={15} className="text-emerald-600" />
-          <span>Giấy chứng nhận (e-Cert)</span>
-        </button>
+
+      {/* Primary Action Button: MUA NGAY -> /mua-bao-hiem */}
+      <div className="mt-5 space-y-2.5">
+        <Link
+          href={`/mua-bao-hiem?product=${productSlug}`}
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#0066cc] py-3.5 text-[15px] font-extrabold text-white shadow-md hover:bg-[#0052b3] transition transform hover:-translate-y-0.5"
+        >
+          <span>Mua bảo hiểm ngay</span>
+          <Icon name="arrow" size={16} />
+        </Link>
+
+        <div className="grid gap-2 sm:grid-cols-2">
+          <button
+            type="button"
+            onClick={onTogglePlanDetails}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-[#cce0f5] bg-[#f4f8fd] px-4 py-2.5 text-[13px] font-semibold text-[#0b2341] hover:bg-[#eef6ff] transition"
+          >
+            <span>{showPlanDetails ? "Ẩn chi tiết gói" : "Xem chi tiết gói & bảng giá"}</span>
+            <Icon name={showPlanDetails ? "close" : "arrow"} size={14} />
+          </button>
+
+          <button
+            type="button"
+            onClick={onShowCertificate}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-[13px] font-semibold text-emerald-800 hover:bg-emerald-100 transition"
+          >
+            <Icon name="shield" size={14} className="text-emerald-600" />
+            <span>Xem mẫu e-Cert</span>
+          </button>
+        </div>
       </div>
+
       {showPlanDetails && (
         <div className="mt-4 rounded-[12px] border border-[#cce0f5] bg-white p-4 text-left">
           <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0066cc]">CHI TIẾT GÓI {plan.name.toUpperCase()}</p>
@@ -406,4 +458,3 @@ function QuoteResultView({
     </div>
   );
 }
-
