@@ -36,10 +36,10 @@ export function ECertificateCard({ cert, onClose }: Props) {
             />
             <div>
               <span className="text-[11px] font-semibold tracking-wider text-[#f5ab19] uppercase">
-                TỔNG CÔNG TY BẢO HIỂM BIDV (BIC)
+                DỮ LIỆU MẪU BẢO AN TÂY NGUYÊN
               </span>
               <h2 className="text-[17px] font-extrabold tracking-tight text-white">
-                GIẤY CHỨNG NHẬN BẢO HIỂM ĐIỆN TỬ
+                THÔNG TIN CHỨNG NHẬN MINH HỌA
               </h2>
             </div>
           </div>
@@ -58,7 +58,7 @@ export function ECertificateCard({ cert, onClose }: Props) {
         <div className="mt-4 flex items-center justify-between rounded-xl bg-white/10 backdrop-blur-md px-4 py-2 text-xs border border-white/20">
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span className="font-bold text-emerald-300">ĐANG CÓ HIỆU LỰC PHÁP LÝ</span>
+            <span className="font-bold text-emerald-300">DỮ LIỆU DEMO ĐỂ ĐỐI CHIẾU GIAO DIỆN</span>
           </div>
           <span className="font-mono text-white/90">Số: <strong>{cert.id}</strong></span>
         </div>
@@ -70,7 +70,7 @@ export function ECertificateCard({ cert, onClose }: Props) {
         <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-3.5 text-xs text-emerald-900 flex items-start gap-3">
           <Icon name="shield" size={20} className="text-emerald-600 shrink-0 mt-0.5" />
           <div>
-            <strong>Chứng nhận điện tử hợp lệ theo Nghị định 67/2023/NĐ-CP:</strong> Có giá trị pháp lý tương đương bản giấy khi xuất trình cho Cảnh sát giao thông (CSGT) hoặc cơ quan chức năng.
+            <strong>Lưu ý:</strong> Đây là chứng nhận minh họa trong website, không có giá trị thay thế giấy chứng nhận do doanh nghiệp bảo hiểm phát hành.
           </div>
         </div>
 
@@ -164,11 +164,11 @@ export function ECertificateCard({ cert, onClose }: Props) {
             </div>
             <div>
               <span className="inline-block rounded-md bg-[#0066cc]/10 px-2 py-0.5 text-[10px] font-bold text-[#0066cc] mb-1">
-                QUÉT ĐỂ ĐỐI CHIẾU THẬT
+                MÃ ĐỐI CHIẾU MẪU
               </span>
-              <h4 className="text-sm font-bold text-[#0b2341]">Mã QR Mã Hóa Pháp Lý</h4>
+              <h4 className="text-sm font-bold text-[#0b2341]">Mã QR Minh Họa</h4>
               <p className="mt-0.5 text-xs text-[#4a6785] max-w-xs">
-                Dùng camera điện thoại để quét mã đối chiếu thông tin gốc tại cổng xác thực Bảo An Tây Nguyên.
+                Dùng để kiểm thử giao diện tra cứu; thông tin chính thức cần đối chiếu qua kênh phát hành của doanh nghiệp bảo hiểm.
               </p>
             </div>
           </div>
@@ -180,14 +180,14 @@ export function ECertificateCard({ cert, onClose }: Props) {
               className="flex items-center justify-center gap-2 rounded-xl bg-[#0066cc] px-5 py-2.5 text-xs font-bold text-white shadow-md hover:bg-[#0052b3] transition"
             >
               <Icon name="download" size={15} />
-              <span>In / Tải Giấy chứng nhận (PDF)</span>
+              <span>In / Tải bản mẫu</span>
             </button>
             <button
               onClick={handleCopyLink}
               className="flex items-center justify-center gap-2 rounded-xl border border-[#cce0f5] bg-[#f4f8fd] px-5 py-2.5 text-xs font-bold text-[#0b2341] hover:bg-[#eef6ff] transition"
             >
               <Icon name="check" size={15} className={copied ? "text-emerald-600" : "text-[#4a6785]"} />
-              <span>{copied ? "Đã sao chép Link QR!" : "Sao chép Link Xác thực"}</span>
+              <span>{copied ? "Đã sao chép link" : "Sao chép link mẫu"}</span>
             </button>
           </div>
         </div>

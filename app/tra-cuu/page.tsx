@@ -7,7 +7,7 @@ export default function TraCuuPageRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/tien-ich");
+    router.replace("/tien-ich?tab=tai-tuc");
   }, [router]);
 
   return (
@@ -15,7 +15,7 @@ export default function TraCuuPageRedirect() {
       <div className="space-y-3">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0066cc] border-t-transparent mx-auto"></div>
         <p className="text-sm font-semibold text-[#0b2341]">
-          Đang chuyển hướng sang Cổng Tiện Ích...
+          Đang chuyển hướng tới Tái Tục Bảo Hiểm BIC...
         </p>
       </div>
     </div>

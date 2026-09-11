@@ -3,12 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { calculateQuote, formatVnd } from "../../lib/quote";
-import { quotePlans } from "../../config/quote-plans";
 import type { QuoteInput, QuoteProductType, QuoteResult } from "../../types/quote";
 import { Icon } from "../ui/icon";
 import { OcrScannerModal } from "../ui/ocr-scanner-modal";
-import { ECertificateCard } from "../certificate/e-certificate-card";
-import { generateMockCertificate, type InsuranceCertificate } from "../../lib/certificate";
 import type { OcrResult } from "../../lib/ocr";
 
 type Props = {
@@ -64,10 +61,8 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
   const [plan, setPlan] = useState<QuoteInput["plan"]>("basic");
   const [fields, setFields] = useState<Record<string, string | boolean>>(defaultFields(initialProductType));
   const [result, setResult] = useState<QuoteResult | null>(null);
-  const [showPlanDetails, setShowPlanDetails] = useState(false);
 
   const [isOcrOpen, setIsOcrOpen] = useState(false);
-  const [activeCert, setActiveCert] = useState<InsuranceCertificate | null>(null);
 
   // Sync when initialProductType changes or custom selection event fires
   useEffect(() => {
@@ -102,15 +97,6 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
     setResult(null);
   }
 
-  function handleOpenSampleCert() {
-    const cert = generateMockCertificate(
-      String(fields.scannedPlate || "47A-349.54"),
-      String(fields.scannedOwner || "TRẦN TRỌNG ANH"),
-      productType === "auto" ? "Ô tô chở người dưới 6 chỗ" : "Xe máy mô tô 2 bánh"
-    );
-    setActiveCert(cert);
-  }
-
   function updateField(name: string, value: string | boolean) {
     setResult(null);
     setFields((current) => ({ ...current, [name]: value }));
@@ -121,7 +107,6 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
     setPlan("basic");
     setFields(defaultFields(value));
     setResult(null);
-    setShowPlanDetails(false);
     onSelectionChange?.({ productType: value, plan: "basic" });
   }
 
@@ -134,8 +119,6 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
   function calculate() {
     setResult(calculateQuote({ productType, plan, ...fields } as QuoteInput));
   }
-
-  const selectedPlan = quotePlans[productType][plan];
 
   const selectClass = "w-full rounded-[11px] border border-[#cce0f5] bg-[#f4f8fd] px-4 py-3 text-[15px] text-[#0b2341] outline-none transition focus:border-[#0066cc] focus:bg-white";
   const inputClass = `${selectClass} placeholder:text-[#8aa09e]`;
@@ -358,10 +341,6 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
       {result && (
         <QuoteResultView
           result={result}
-          showPlanDetails={showPlanDetails}
-          onTogglePlanDetails={() => setShowPlanDetails((current) => !current)}
-          onShowCertificate={handleOpenSampleCert}
-          plan={selectedPlan}
           productSlug={productSlugMap[productType]}
         />
       )}
@@ -372,32 +351,15 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
         onClose={() => setIsOcrOpen(false)}
         onApply={handleOcrApply}
       />
-
-      {/* e-Certificate Card Modal */}
-      {activeCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fadeIn overflow-y-auto">
-          <div className="my-8 w-full max-w-2xl">
-            <ECertificateCard cert={activeCert} onClose={() => setActiveCert(null)} />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
 
 function QuoteResultView({
   result,
-  showPlanDetails,
-  onTogglePlanDetails,
-  onShowCertificate,
-  plan,
   productSlug,
 }: {
   result: QuoteResult;
-  showPlanDetails: boolean;
-  onTogglePlanDetails: () => void;
-  onShowCertificate: () => void;
-  plan: (typeof quotePlans)[QuoteProductType]["basic"];
   productSlug: string;
 }) {
   return (
@@ -414,8 +376,7 @@ function QuoteResultView({
         <div className="flex justify-between gap-4 border-t border-[#cce0f5] pt-2 font-bold text-[#0066cc]"><span>Tổng phí dự kiến</span><strong>{formatVnd(result.totalPremium)}</strong></div>
       </div>
 
-      {/* Primary Action Button: MUA NGAY -> /mua-bao-hiem */}
-      <div className="mt-5 space-y-2.5">
+      <div className="mt-5">
         <Link
           href={`/mua-bao-hiem?product=${productSlug}`}
           className="flex w-full items-center justify-center gap-2 rounded-full bg-[#0066cc] py-3.5 text-[15px] font-extrabold text-white shadow-md hover:bg-[#0052b3] transition transform hover:-translate-y-0.5"
@@ -423,38 +384,7 @@ function QuoteResultView({
           <span>Mua bảo hiểm ngay</span>
           <Icon name="arrow" size={16} />
         </Link>
-
-        <div className="grid gap-2 sm:grid-cols-2">
-          <button
-            type="button"
-            onClick={onTogglePlanDetails}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-[#cce0f5] bg-[#f4f8fd] px-4 py-2.5 text-[13px] font-semibold text-[#0b2341] hover:bg-[#eef6ff] transition"
-          >
-            <span>{showPlanDetails ? "Ẩn chi tiết gói" : "Xem chi tiết gói & bảng giá"}</span>
-            <Icon name={showPlanDetails ? "close" : "arrow"} size={14} />
-          </button>
-
-          <button
-            type="button"
-            onClick={onShowCertificate}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-[13px] font-semibold text-emerald-800 hover:bg-emerald-100 transition"
-          >
-            <Icon name="shield" size={14} className="text-emerald-600" />
-            <span>Xem mẫu e-Cert</span>
-          </button>
-        </div>
       </div>
-
-      {showPlanDetails && (
-        <div className="mt-4 rounded-[12px] border border-[#cce0f5] bg-white p-4 text-left">
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0066cc]">CHI TIẾT GÓI {plan.name.toUpperCase()}</p>
-          <p className="mt-2 text-[15px] font-bold text-[#0b2341]">{plan.summary}</p>
-          <ul className="mt-3 space-y-2 text-[13px] leading-5 text-[#4a6785]">
-            {plan.benefits.map((benefit) => <li key={benefit} className="flex gap-2"><Icon name="check" size={15} className="mt-0.5 shrink-0 text-[#0066cc]" /><span>{benefit}</span></li>)}
-          </ul>
-          <p className="mt-3 text-[12px] leading-5 text-[#6b84a5]"><strong className="text-[#0b2341]">Phù hợp:</strong> {plan.bestFor}</p>
-        </div>
-      )}
     </div>
   );
 }

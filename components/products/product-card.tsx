@@ -14,6 +14,12 @@ const productImageMap: Record<string, string> = {
   "bao-hiem-nhan-tho": "/image/life_hero.png",
   "bao-hiem-tai-nan": "/image/accident_hero.png",
   "bao-hiem-du-lich": "/image/travel_hero.png",
+  "bao-hiem-nha-o": "/image/home_insurance_hero.png",
+  "bao-hiem-tai-san-chay-no": "/image/fire_insurance_hero.png",
+  "bao-hiem-doanh-nghiep": "/image/business_insurance_hero.png",
+  "bao-hiem-trach-nhiem": "/image/liability_insurance_hero.png",
+  "bao-hiem-hang-hoa": "/image/cargo_insurance_hero.png",
+  "bao-hiem-nong-nghiep": "/image/agriculture_insurance_hero.png",
 };
 
 export function ProductCard({ product }: Props) {
@@ -47,7 +53,7 @@ export function ProductCard({ product }: Props) {
             <Icon name={safeIcon} size={20} />
           </span>
           <span className="rounded-full bg-[#f5ab19]/15 border border-[#f5ab19]/40 px-3 py-1 text-[11px] font-bold tracking-wide text-[#b87c00]">
-            Cấp đơn cấp tốc
+            Tư vấn nhanh
           </span>
         </div>
 
@@ -92,7 +98,7 @@ export function ProductCard({ product }: Props) {
 
       <div className="mt-6 pt-4 border-t border-[#eef6ff]">
         <div className="flex w-full items-center justify-center gap-2 rounded-full bg-[#0066cc] py-3.5 px-4 text-[15px] font-bold text-white shadow-sm transition-all duration-200 group-hover:bg-[#0052b3] group-hover:shadow-md">
-          <span>Tính phí & cấp đơn</span>
+          <span>Tính phí & gửi yêu cầu</span>
           <Icon name="arrow-right" size={16} />
         </div>
       </div>

@@ -16,11 +16,11 @@ export function SiteFooter() {
             <span className="text-[18px] font-bold tracking-tight text-white">Bảo An Tây Nguyên</span>
           </div>
           <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-[#94a3b8]">
-            Nền tảng mua bảo hiểm trực tuyến thông minh. Phục vụ 24/7, tính phí tức thì và cấp giấy chứng nhận điện tử hợp lệ theo quy định Bộ Tài Chính.
+            Nền tảng tham khảo phí và gửi yêu cầu tư vấn bảo hiểm trực tuyến. Phí và giấy chứng nhận chính thức cần được doanh nghiệp bảo hiểm xác nhận phát hành.
           </p>
           <div className="mt-5 flex items-center gap-2 text-[12px] font-mono text-[#60a5fa] font-semibold">
             <span className="h-2 w-2 rounded-full bg-[#3b82f6] animate-pulse"></span>
-            BIC ONLINE LIVE · MVL/BIC_2026
+            TƯ VẤN ONLINE · BATN_2026
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export function SiteFooter() {
       {/* Fine-print Legal Bar */}
       <div className="border-t border-[#132c4c] bg-[#040f1e]">
         <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-5 py-6 text-[12px] text-[#94a3b8] sm:flex-row sm:items-center sm:justify-between lg:px-8">
-          <span>© 2026 Bảo An Tây Nguyên. Giấy chứng nhận điện tử phát hành theo Nghị định 67/2023/NĐ-CP.</span>
+          <span>© 2026 Bảo An Tây Nguyên. Nội dung trên website là thông tin tham khảo trước khi phát hành chính thức.</span>
           <div className="flex gap-6">
             <Link href="/chinh-sach-bao-mat" className="hover:text-[#60a5fa]">Chính sách bảo mật</Link>
             <Link href="/dieu-khoan-su-dung" className="hover:text-[#60a5fa]">Điều khoản sử dụng</Link>
@@ -101,7 +101,5 @@ export function SiteFooter() {
     </footer>
   );
 }
-
-
 
 

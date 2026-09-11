@@ -127,7 +127,7 @@ function MuaBaoHiemContent() {
             <span className="text-[#0066cc]">Mua bảo hiểm trực tuyến BIC</span>
           </div>
           <h1 className="text-2xl font-extrabold tracking-tight text-[#07192f] sm:text-3xl">
-            Cổng Mua &amp; Cấp Giấy Chứng Nhận Bảo Hiểm Điện Tử BIC 24/7
+            Cổng Đăng Ký Mua Bảo Hiểm Trực Tuyến
           </h1>
         </div>
 
@@ -179,7 +179,7 @@ function MuaBaoHiemContent() {
               {/* Product Badge */}
               <div className="flex items-center justify-between border-b border-[#eef6ff] pb-3">
                 <span className="rounded-full bg-[#0066cc]/10 px-3 py-1 text-xs font-extrabold text-[#0066cc]">
-                  PHÍ BẢO HIỂM CHÍNH HÃNG
+                  PHÍ BẢO HIỂM THAM KHẢO
                 </span>
                 <span className="text-xs font-bold text-[#4a6785]">
                   Đã gồm VAT
@@ -229,15 +229,15 @@ function MuaBaoHiemContent() {
               <ul className="space-y-2.5 text-xs text-[#0b2341] border-t border-b border-[#eef6ff] py-4">
                 <li className="flex items-center gap-2 font-medium">
                   <Icon name="check" size={16} className="text-[#0066cc] shrink-0" />
-                  <span>Cấp giấy chứng nhận điện tử ngay sau thanh toán</span>
+                  <span>Tư vấn viên xác nhận thông tin trước khi phát hành</span>
                 </li>
                 <li className="flex items-center gap-2 font-medium">
                   <Icon name="shield" size={16} className="text-[#0066cc] shrink-0" />
-                  <span>Sản phẩm bảo lãnh bởi BIC &mdash; Ngân hàng BIDV</span>
+                  <span>Sản phẩm dự kiến phát hành theo quy trình của doanh nghiệp bảo hiểm</span>
                 </li>
                 <li className="flex items-center gap-2 font-medium">
                   <Icon name="award" size={16} className="text-[#0066cc] shrink-0" />
-                  <span>Bắt buộc theo Nghị định 67/2023/NĐ-CP</span>
+                  <span>Điều kiện và phí chính thức cần được đối chiếu trước khi cấp đơn</span>
                 </li>
                 <li className="flex items-center gap-2 font-medium text-[#0066cc]">
                   <Icon name="phone" size={16} className="shrink-0" />
@@ -254,8 +254,7 @@ function MuaBaoHiemContent() {
                   className="mt-0.5 h-4 w-4 rounded border-[#cce0f5] text-[#0066cc]"
                 />
                 <span>
-                  Tôi xác nhận thông tin trên là chính xác và đồng ý với{" "}
-                  <strong className="text-[#0066cc] underline">điều khoản bảo hiểm BIC</strong> &amp; việc xử lý dữ liệu cá nhân để cấp giấy chứng nhận.
+                  Tôi xác nhận thông tin trên là chính xác và đồng ý để tư vấn viên liên hệ kiểm tra điều kiện, phí và hồ sơ phát hành.
                 </span>
               </label>
 
@@ -264,7 +263,7 @@ function MuaBaoHiemContent() {
                 type="submit"
                 className="w-full rounded-2xl bg-[#0066cc] py-4 text-sm font-extrabold text-white shadow-lg shadow-[#0066cc]/20 hover:bg-[#0052b3] transition transform hover:-translate-y-0.5"
               >
-                Tiến hành thanh toán ({fees.final.toLocaleString("vi-VN")}đ)
+                Gửi yêu cầu mua ({fees.final.toLocaleString("vi-VN")}đ)
               </button>
             </div>
           </div>
@@ -285,10 +284,10 @@ function MuaBaoHiemContent() {
                 <Icon name="check" size={32} />
               </span>
               <h3 className="text-xl font-extrabold text-[#07192f]">
-                Hệ thống tiếp nhận đơn thành công!
+                Yêu cầu đã được ghi nhận
               </h3>
               <p className="text-xs leading-relaxed text-[#4a6785]">
-                Đơn đăng ký mua bảo hiểm của chủ xe <strong>{formData.ownerName || "Bảo An Tây Nguyên"}</strong> đã được ghi nhận. Giấy chứng nhận điện tử và mã thanh toán QR sẽ được gửi tới Zalo/SĐT <strong>{formData.phoneNumber}</strong> trong 2 phút.
+                Thông tin đăng ký của <strong>{formData.ownerName || "khách hàng"}</strong> đã được ghi nhận trên giao diện. Website chưa kết nối thanh toán hoặc phát hành giấy chứng nhận tự động; vui lòng chờ tư vấn viên xác nhận qua Zalo/SĐT <strong>{formData.phoneNumber || "đã nhập"}</strong>.
               </p>
               <div className="rounded-2xl bg-[#f4f8fd] border border-[#cce0f5] p-3 text-xs font-mono font-bold text-[#0066cc]">
                 Mã đơn: BIC-2026-BATN-{Math.floor(100000 + Math.random() * 900000)}

@@ -22,7 +22,7 @@ export function ContactForm() {
           setStatus("Vui lòng điền họ tên, số điện thoại và đồng ý điều khoản.");
           return;
         }
-        setStatus("Hệ thống đã tiếp nhận yêu cầu! Chuyên viên BIC và Bảo An Tây Nguyên sẽ liên hệ qua Zalo/SĐT trong 3 phút.");
+        setStatus("Yêu cầu đã được ghi nhận trên trình duyệt. Form này chưa kết nối hệ thống gửi dữ liệu thật; vui lòng gọi/Zalo 0916 201 085 để được tư vấn ngay.");
         f.reset();
       }}
       className="space-y-4 rounded-[18px] border border-[#cce0f5] bg-[#ffffff] p-6 text-[#0b2341] lg:p-8"
@@ -31,10 +31,10 @@ export function ContactForm() {
       <div className="flex items-center justify-between border-b border-[#cce0f5] pb-4">
         <div>
           <h3 className="text-lg font-bold text-[#0b2341]">Gửi yêu cầu tư vấn</h3>
-          <p className="text-xs text-[#4a6785]">Nhận tư vấn chi tiết từ chuyên viên Bảo An Tây Nguyên & BIC</p>
+          <p className="text-xs text-[#4a6785]">Để lại thông tin nháp trước khi kết nối tư vấn thật qua Hotline/Zalo</p>
         </div>
         <span className="rounded-full border border-[#0066cc]/40 bg-[#f4f8fd] px-3 py-1 font-mono text-[11px] font-bold text-[#0066cc]">
-          ● 24/7 Live
+          Bản nháp
         </span>
       </div>
 
@@ -104,7 +104,7 @@ export function ContactForm() {
         className="w-full rounded-full bg-[#0066cc] px-5 py-3.5 text-sm font-semibold text-white transition-transform duration-150 hover:bg-[#0052b3] active:scale-95 shadow-sm"
         type="submit"
       >
-        Gửi yêu cầu tư vấn ngay
+        Lưu yêu cầu tư vấn
       </button>
 
       {status && (
@@ -115,5 +115,4 @@ export function ContactForm() {
     </form>
   );
 }
-
 

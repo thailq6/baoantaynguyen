@@ -15,6 +15,12 @@ const productImageMap: Record<string, string> = {
   "bao-hiem-nhan-tho": "/image/life_hero.png",
   "bao-hiem-tai-nan": "/image/accident_hero.png",
   "bao-hiem-du-lich": "/image/travel_hero.png",
+  "bao-hiem-nha-o": "/image/home_insurance_hero.png",
+  "bao-hiem-tai-san-chay-no": "/image/fire_insurance_hero.png",
+  "bao-hiem-doanh-nghiep": "/image/business_insurance_hero.png",
+  "bao-hiem-trach-nhiem": "/image/liability_insurance_hero.png",
+  "bao-hiem-hang-hoa": "/image/cargo_insurance_hero.png",
+  "bao-hiem-nong-nghiep": "/image/agriculture_insurance_hero.png",
 };
 
 export function generateStaticParams() {
@@ -278,7 +284,7 @@ export default async function ProductDetailPage({
             </div>
 
             <div className="mt-6 rounded-[12px] bg-[#f4f8fd] p-4 text-[12px] leading-relaxed text-[#4a6785]">
-              <strong className="text-[#0b2341]">Cam kết Bảo An Tây Nguyên:</strong> Đơn bảo hiểm được cấp điện tử chính hãng từ BIC (BIDV), giá trị pháp lý 100% trên toàn quốc.
+              <strong className="text-[#0b2341]">Lưu ý Bảo An Tây Nguyên:</strong> Phí và giấy chứng nhận chính thức chỉ có hiệu lực sau khi doanh nghiệp bảo hiểm xác nhận phát hành.
             </div>
           </div>
         </aside>

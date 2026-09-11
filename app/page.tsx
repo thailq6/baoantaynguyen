@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { SiteHeader } from "../components/layout/site-header";
-import { SiteFooter } from "../components/layout/site-footer";
 import { ProductCard } from "../components/products/product-card";
 import { QuickQuote } from "../components/quote/quick-quote";
 import { Icon } from "../components/ui/icon";
@@ -8,9 +6,7 @@ import { insuranceProducts } from "../config/products";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#f4f8fd] text-[#0b2341] font-sans antialiased">
-      <SiteHeader />
-
+    <>
       <main>
         {/* ====================================================================
             TILE 1 (Apple Luminous Ice Blue Canvas): HERO & QUICK QUOTE
@@ -32,7 +28,7 @@ export default function HomePage() {
 
               {/* Tagline */}
               <p className="mt-5 max-w-[560px] text-[19px] leading-[1.47] text-[#4a6785] tracking-tight">
-                Hệ thống tư vấn đúng nhu cầu, tính phí tức thì và cấp giấy chứng nhận điện tử ngay. Ô tô, xe máy, sức khỏe, nhân thọ, du lịch — bảo lãnh bởi BIC (BIDV).
+                Hệ thống tư vấn đúng nhu cầu, tính phí tham khảo tức thì và hỗ trợ chuẩn bị hồ sơ phát hành. Ô tô, xe máy, sức khỏe, nhân thọ, du lịch.
               </p>
 
               {/* Action Buttons - BIC Emerald Pill & Gold Accents */}
@@ -56,8 +52,8 @@ export default function HomePage() {
               {/* Key Trust Stats */}
               <div className="mt-12 grid grid-cols-3 gap-6 border-t border-[#cce0f5] pt-8 w-full max-w-[540px]">
                 <div>
-                  <div className="text-[24px] font-bold tracking-tight text-[#0066cc]">2 phút</div>
-                  <div className="mt-1 text-[13px] text-[#4a6785] font-medium">Cấp giấy chứng nhận</div>
+                  <div className="text-[24px] font-bold tracking-tight text-[#0066cc]">Nhanh</div>
+                  <div className="mt-1 text-[13px] text-[#4a6785] font-medium">Gửi yêu cầu tư vấn</div>
                 </div>
                 <div>
                   <div className="text-[24px] font-bold tracking-tight text-[#0066cc]">24 / 7</div>
@@ -90,7 +86,7 @@ export default function HomePage() {
                 Trải nghiệm mua bảo hiểm minh bạch & tiện lợi
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-[#d0e2f7]">
-                Tốc độ vượt trội, cấp đơn tự động — giá trị bảo vệ cam kết chính hãng bởi Tổng Công ty Bảo hiểm BIDV (BIC).
+                Xem phí minh họa nhanh, chuẩn bị thông tin gọn và được tư vấn viên xác nhận trước khi phát hành chính thức.
               </p>
             </div>
 
@@ -100,13 +96,13 @@ export default function HomePage() {
                   step: "01",
                   icon: "calculator",
                   title: "Tính phí tức thì",
-                  desc: "Hệ thống tính phí chính xác theo quy chuẩn Bộ Tài Chính và BIC chỉ trong 1 giây, minh bạch 100%.",
+                  desc: "Công cụ hiển thị phí minh họa theo dữ liệu đã chọn để bạn dự trù ngân sách trước khi tư vấn.",
                 },
                 {
                   step: "02",
                   icon: "award",
-                  title: "Cấp chứng nhận ngay",
-                  desc: "Giấy chứng nhận điện tử có mã QR xác thực hợp lệ theo Nghị định 67/2023/NĐ-CP.",
+                  title: "Chuẩn bị hồ sơ gọn",
+                  desc: "Tập hợp thông tin cần thiết để tư vấn viên kiểm tra điều kiện và hướng dẫn phát hành qua kênh chính thức.",
                 },
                 {
                   step: "03",
@@ -186,7 +182,7 @@ export default function HomePage() {
                 QUY TRÌNH ĐƠN GIẢN
               </p>
               <h2 className="mt-3 text-[34px] font-bold leading-tight tracking-[-0.02em] text-[#0b2341] lg:text-[44px]">
-                3 bước để nhận giấy chứng nhận điện tử
+                3 bước để gửi yêu cầu mua bảo hiểm
               </h2>
             </div>
 
@@ -197,7 +193,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Chọn gói & Tính phí</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-[#4a6785]">
-                  Chọn sản phẩm, số chỗ ngồi hoặc quyền lợi mong muốn. Hệ thống tự động tính mức phí chính xác tức thì.
+                  Chọn sản phẩm, số chỗ ngồi hoặc quyền lợi mong muốn. Hệ thống hiển thị mức phí minh họa để tham khảo.
                 </p>
               </div>
 
@@ -205,9 +201,9 @@ export default function HomePage() {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0066cc] text-white font-mono text-xl font-bold">
                   2
                 </div>
-                <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Xác nhận & Thanh toán</h3>
+                <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Xác nhận thông tin</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-[#4a6785]">
-                  Quét mã VietQR chuyển khoản nhanh chóng hoặc thanh toán qua thẻ ngân hàng, an toàn 100%.
+                  Kiểm tra thông tin chủ xe/người tham gia và gửi yêu cầu để tư vấn viên đối chiếu.
                 </p>
               </div>
 
@@ -215,9 +211,9 @@ export default function HomePage() {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0066cc] text-white font-mono text-xl font-bold">
                   3
                 </div>
-                <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Nhận giấy chứng nhận</h3>
+                <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Hoàn tất qua tư vấn viên</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-[#4a6785]">
-                  Giấy chứng nhận điện tử có mã QR của BIC được gửi thẳng vào Zalo và Email của bạn trong 2 phút.
+                  Phí, điều kiện và giấy chứng nhận chính thức chỉ có hiệu lực sau khi doanh nghiệp bảo hiểm xác nhận phát hành.
                 </p>
               </div>
             </div>
@@ -234,10 +230,10 @@ export default function HomePage() {
                 SẴN SÀNG AN TÂM CÙNG BẢO AN TÂY NGUYÊN
               </span>
               <h2 className="mt-4 text-[34px] font-bold tracking-tight text-[#0b2341] lg:text-[46px]">
-                Tính phí và nhận bảo hiểm ngay hôm nay
+                Tính phí và gửi yêu cầu hôm nay
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-[#4a6785]">
-                Không mất thời gian chờ đợi, không thủ tục rườm rà. Hệ thống tư vấn chính xác, cấp đơn tức thì 24/7.
+                Nhập thông tin một lần, xem phí minh họa và kết nối tư vấn viên để hoàn tất đúng quy trình.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Link
@@ -259,12 +255,9 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+    </>
   );
 }
-
 
 
 

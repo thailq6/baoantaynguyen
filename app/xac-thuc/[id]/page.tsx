@@ -26,7 +26,7 @@ export default async function XacThucPage({ params }: Props) {
           </div>
           <h1 className="text-xl font-bold text-[#07192f]">Không tìm thấy dữ liệu xác thực</h1>
           <p className="text-xs text-[#4a6785]">
-            Mã chứng nhận <strong>{id}</strong> không tồn tại trên hệ thống niêm phong điện tử. Vui lòng kiểm tra lại hoặc liên hệ Hotline <strong>0916 201 085</strong>.
+            Mã chứng nhận <strong>{id}</strong> không có trong dữ liệu mẫu của website. Vui lòng kiểm tra lại hoặc liên hệ Hotline <strong>0916 201 085</strong>.
           </p>
           <Link href="/tra-cuu" className="inline-block rounded-full bg-[#0066cc] px-6 py-2.5 text-xs font-bold text-white shadow-md">
             Quay lại Cổng tra cứu
@@ -39,19 +39,19 @@ export default async function XacThucPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-[#07192f] py-8 md:py-16 text-white">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 space-y-6">
-        {/* Authority Legal Header Banner */}
+        {/* Certificate lookup header */}
         <div className="rounded-[24px] border border-emerald-500/40 bg-gradient-to-br from-emerald-950/80 via-emerald-900/60 to-[#07192f] p-6 shadow-2xl backdrop-blur-md text-center space-y-3">
           <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg ring-8 ring-emerald-500/20">
             <Icon name="check" size={28} />
           </div>
           <span className="inline-block rounded-full bg-emerald-500/20 px-4 py-1 text-xs font-extrabold text-emerald-300 border border-emerald-500/40 uppercase tracking-widest">
-            HỆ THỐNG NIÊM PHONG ĐIỆN TỬ BIC - BIDV
+            THÔNG TIN ĐỐI CHIẾU MẪU
           </span>
           <h1 className="text-2xl font-black text-white sm:text-3xl tracking-tight">
-            ✓ GIẤY CHỨNG NHẬN HỢP LỆ
+            DỮ LIỆU CHỨNG NHẬN MẪU
           </h1>
           <p className="text-xs text-emerald-200/90 max-w-xl mx-auto leading-relaxed">
-            Chứng nhận bảo hiểm TNDS bắt buộc này có đầy đủ hiệu lực pháp lý tra cứu công khai trực tiếp cho Cảnh sát giao thông (CSGT) và các Cơ quan Chức năng theo <strong>Nghị định 67/2023/NĐ-CP</strong>.
+            Đây là dữ liệu minh họa trong website, không thay thế xác thực trực tiếp từ doanh nghiệp bảo hiểm hoặc cơ quan có thẩm quyền.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default async function XacThucPage({ params }: Props) {
               <div className="rounded-2xl border border-[#cce0f5] bg-[#f8fafc] p-4 text-xs space-y-1">
                 <span className="font-bold text-[#0066cc]">THỜI HẠN BẢO HIỂM</span>
                 <p className="text-sm font-bold text-[#07192f]">Từ {cert.startDate} đến {cert.endDate}</p>
-                <p className="text-[11px] text-emerald-700 font-semibold">🟢 Đang trong thời hạn bảo vệ hợp pháp</p>
+                <p className="text-[11px] text-emerald-700 font-semibold">Trạng thái mẫu: còn thời hạn trên dữ liệu demo</p>
               </div>
 
               <div className="rounded-2xl border border-[#cce0f5] bg-[#f8fafc] p-4 text-xs space-y-1">
@@ -114,12 +114,12 @@ export default async function XacThucPage({ params }: Props) {
                   BIC
                 </div>
                 <div>
-                  <div className="font-bold text-white">Xác thực Chữ ký số BIC</div>
-                  <div className="text-[11px] text-slate-400">Thời điểm cấp đơn: {cert.issueDate}</div>
+                  <div className="font-bold text-white">Mã đối chiếu minh họa</div>
+                  <div className="text-[11px] text-slate-400">Thời điểm ghi nhận mẫu: {cert.issueDate}</div>
                 </div>
               </div>
               <span className="rounded-md bg-emerald-500/20 px-2.5 py-1 text-[11px] font-mono text-emerald-300 border border-emerald-500/30">
-                VERIFIED SEAL
+                DEMO DATA
               </span>
             </div>
           </div>

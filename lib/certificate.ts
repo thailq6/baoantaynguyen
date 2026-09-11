@@ -121,7 +121,7 @@ export function findCertificates(query: string): InsuranceCertificate[] {
 export function getCertificateById(id: string): InsuranceCertificate | undefined {
   return sampleCertificates.find(
     (c) => c.id.toLowerCase() === id.trim().toLowerCase()
-  ) || sampleCertificates[0];
+  );
 }
 
 export function generateMockCertificate(

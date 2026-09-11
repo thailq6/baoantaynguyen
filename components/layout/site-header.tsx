@@ -7,8 +7,6 @@ import { Icon } from "../ui/icon";
 const links = [
   ["Sản phẩm", "/san-pham"],
   ["Tiện ích", "/tien-ich"],
-  ["Vì sao chọn", "/#vi-sao-chon"],
-  ["Quy trình", "/#quy-trinh"],
   ["Bảng giá", "/bao-gia"],
   ["Hướng dẫn", "/cam-nang"],
   ["Hỏi đáp", "/cau-hoi"],

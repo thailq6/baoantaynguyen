@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { SiteHeader } from "./site-header";
-import { SiteFooter } from "./site-footer";
 
 type Props = {
   eyebrow: string;
@@ -11,8 +9,7 @@ type Props = {
 
 export function InteriorPage({ eyebrow, title, intro, children }: Props) {
   return (
-    <div className="min-h-screen bg-[#f4f8fd] text-[#0b2341]">
-      <SiteHeader />
+    <div className="bg-[#f4f8fd] text-[#0b2341]">
       <main>
         <section className="border-b border-[#cce0f5] bg-[#f4f8fd]">
           <div className="mx-auto max-w-[1240px] px-5 py-16 lg:px-8 lg:py-24">
@@ -32,7 +29,6 @@ export function InteriorPage({ eyebrow, title, intro, children }: Props) {
         </section>
         {children}
       </main>
-      <SiteFooter />
     </div>
   );
 }

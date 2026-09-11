@@ -522,7 +522,7 @@ export function PurchaseForms({
           </div>
 
           <div className="rounded-xl bg-[#fffdf5] border border-[#f5ab19]/30 p-3 text-[11px] leading-relaxed text-[#4a6785]">
-            ⚠️ Kiểm tra kỹ <strong>số khung, số máy, CCCD &amp; địa chỉ</strong> &mdash; in trực tiếp trên giấy chứng nhận điện tử BIC, không sửa được sau khi cấp đơn.
+            Kiểm tra kỹ <strong>số khung, số máy, CCCD &amp; địa chỉ</strong>; đây là thông tin tư vấn viên sẽ dùng để đối chiếu trước khi phát hành chính thức.
           </div>
         </div>
       </div>

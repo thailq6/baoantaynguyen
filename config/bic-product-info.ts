@@ -227,7 +227,7 @@ export const bicProductInfo: Record<string, BicProductInfo> = {
     limits: [
       "Hạn mức bảo vệ ngôi nhà: Từ 500.000.000 VNĐ đến 5.000.000.000 VNĐ",
       "Hạn mức bảo vệ tài sản bên trong: Lên tới 1.000.000.000 VNĐ",
-      "Không yêu cầu đánh giá thẩm định giá trị thực tế ban đầu (Cấp đơn nhanh trong 2 phút)"
+      "Có thể chuẩn bị thông tin ban đầu nhanh, hồ sơ chính thức cần được tư vấn viên xác nhận trước khi phát hành"
     ],
     coverage: [
       "Bảo vệ phần khung vật chất ngôi nhà trước rủi ro Cháy, Sét đánh, Nổ gas/thiết bị",

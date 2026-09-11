@@ -40,15 +40,6 @@ export function QuoteCatalog() {
     insuranceProducts[0];
   const detail = productDetails[selected[0]];
 
-  function scrollToQuote() {
-    if (typeof window !== "undefined") {
-      const el = document.getElementById("tinh-phi") || document.getElementById("quick-quote-box");
-      if (el && window.innerWidth < 1024) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  }
-
   function selectCategory(value: (typeof categories)[number]["value"]) {
     setCategory(value);
     const nextProduct = insuranceProducts.find(
@@ -73,10 +64,6 @@ export function QuoteCatalog() {
     const productType = slugToProductTypeMap[slug] || "auto";
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("batn_product_select", { detail: productType }));
-      const el = document.getElementById("tinh-phi") || document.getElementById("quick-quote-box");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
     }
   }
 
