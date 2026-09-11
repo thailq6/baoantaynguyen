@@ -8,30 +8,30 @@ import { insuranceProducts } from "../config/products";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#f4faf8] text-[#103b3b] font-sans antialiased">
+    <div className="min-h-screen bg-[#f4f8fd] text-[#0b2341] font-sans antialiased">
       <SiteHeader />
 
       <main>
         {/* ====================================================================
-            TILE 1 (BIC Luminous Mint Glow Canvas): HERO & QUICK QUOTE
+            TILE 1 (Apple Luminous Ice Blue Canvas): HERO & QUICK QUOTE
             ==================================================================== */}
-        <section className="relative overflow-hidden bg-[radial-gradient(circle_at_50%_0%,#cbeee6_0%,#eaf5f2_45%,#f4faf8_100%)] py-16 lg:py-24 border-b border-[#cce5e1]">
+        <section className="relative overflow-hidden bg-[radial-gradient(circle_at_50%_0%,#cbe4ff_0%,#eef6ff_45%,#f4f8fd_100%)] py-16 lg:py-24 border-b border-[#cce0f5]">
           <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
             {/* Hero Content Left */}
             <div className="flex flex-col items-start">
               {/* Eyebrow badge */}
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#006b66]/30 bg-white/90 px-4 py-1.5 text-[13px] font-bold text-[#006b66] shadow-sm backdrop-blur">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#0066cc]/30 bg-white/90 px-4 py-1.5 text-[13px] font-bold text-[#0066cc] shadow-sm backdrop-blur">
                 <Icon name="sparkles" size={16} className="text-[#f5ab19]" />
                 <span className="tracking-wide uppercase">BẢO AN TÂY NGUYÊN · BẢO LÃNH CHÍNH HÃNG BIC</span>
               </div>
 
               {/* Display Headline - Tight BIC tracking */}
-              <h1 className="mt-6 text-[42px] font-bold leading-[1.08] tracking-[-0.025em] text-[#103b3b] sm:text-[54px] lg:text-[62px]">
+              <h1 className="mt-6 text-[42px] font-bold leading-[1.08] tracking-[-0.025em] text-[#0b2341] sm:text-[54px] lg:text-[62px]">
                 Mua bảo hiểm trực tuyến cùng Bảo An Tây Nguyên.
               </h1>
 
               {/* Tagline */}
-              <p className="mt-5 max-w-[560px] text-[19px] leading-[1.47] text-[#577572] tracking-tight">
+              <p className="mt-5 max-w-[560px] text-[19px] leading-[1.47] text-[#4a6785] tracking-tight">
                 Hệ thống tư vấn đúng nhu cầu, tính phí tức thì và cấp giấy chứng nhận điện tử ngay. Ô tô, xe máy, sức khỏe, nhân thọ, du lịch — bảo lãnh bởi BIC (BIDV).
               </p>
 
@@ -39,33 +39,33 @@ export default function HomePage() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/bao-gia"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#006b66] px-8 py-3.5 text-[17px] font-semibold text-white transition-transform duration-150 hover:bg-[#005450] active:scale-95 shadow-md"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0066cc] px-8 py-3.5 text-[17px] font-semibold text-white transition-transform duration-150 hover:bg-[#0052b3] active:scale-95 shadow-md"
                 >
                   <span>Xem sản phẩm & tính phí</span>
                   <Icon name="arrow-right" size={18} />
                 </Link>
                 <a
                   href="tel:0396998765"
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[#006b66] bg-white/80 px-6 py-3.5 text-[17px] font-semibold text-[#006b66] transition-transform duration-150 hover:bg-[#006b66]/10 active:scale-95 shadow-sm"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[#0066cc] bg-white/80 px-6 py-3.5 text-[17px] font-semibold text-[#0066cc] transition-transform duration-150 hover:bg-[#0066cc]/10 active:scale-95 shadow-sm"
                 >
-                  <Icon name="phone" size={18} className="text-[#006b66]" />
+                  <Icon name="phone" size={18} className="text-[#0066cc]" />
                   <span>Tư vấn SĐT: 0396998765</span>
                 </a>
               </div>
 
               {/* Key Trust Stats */}
-              <div className="mt-12 grid grid-cols-3 gap-6 border-t border-[#cce5e1] pt-8 w-full max-w-[540px]">
+              <div className="mt-12 grid grid-cols-3 gap-6 border-t border-[#cce0f5] pt-8 w-full max-w-[540px]">
                 <div>
-                  <div className="text-[24px] font-bold tracking-tight text-[#006b66]">2 phút</div>
-                  <div className="mt-1 text-[13px] text-[#577572] font-medium">Cấp giấy chứng nhận</div>
+                  <div className="text-[24px] font-bold tracking-tight text-[#0066cc]">2 phút</div>
+                  <div className="mt-1 text-[13px] text-[#4a6785] font-medium">Cấp giấy chứng nhận</div>
                 </div>
                 <div>
-                  <div className="text-[24px] font-bold tracking-tight text-[#006b66]">24 / 7</div>
-                  <div className="mt-1 text-[13px] text-[#577572] font-medium">Hỗ trợ trực tuyến</div>
+                  <div className="text-[24px] font-bold tracking-tight text-[#0066cc]">24 / 7</div>
+                  <div className="mt-1 text-[13px] text-[#4a6785] font-medium">Hỗ trợ trực tuyến</div>
                 </div>
                 <div>
-                  <div className="text-[24px] font-bold tracking-tight text-[#006b66]">BIC</div>
-                  <div className="mt-1 text-[13px] text-[#577572] font-medium">Thành viên BIDV</div>
+                  <div className="text-[24px] font-bold tracking-tight text-[#0066cc]">BIC</div>
+                  <div className="mt-1 text-[13px] text-[#4a6785] font-medium">Thành viên BIDV</div>
                 </div>
               </div>
             </div>
@@ -78,9 +78,9 @@ export default function HomePage() {
         </section>
 
         {/* ====================================================================
-            TILE 2 (BIC Deep Forest Teal #003835 - NO BLACK): FEATURES
+            TILE 2 (Deep Ocean Navy #07192f - ZERO BLACK): FEATURES
             ==================================================================== */}
-        <section id="vi-sao-chon" className="bg-[#003835] text-white py-20 lg:py-28 relative">
+        <section id="vi-sao-chon" className="bg-[#07192f] text-white py-20 lg:py-28 relative">
           <div className="mx-auto max-w-[1280px] px-5 lg:px-8">
             <div className="text-center">
               <p className="text-[13px] font-bold uppercase tracking-[0.15em] text-[#f5ab19]">
@@ -89,7 +89,7 @@ export default function HomePage() {
               <h2 className="mt-3 text-[34px] font-bold leading-tight tracking-[-0.02em] text-white lg:text-[44px]">
                 Trải nghiệm mua bảo hiểm minh bạch & tiện lợi
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-[#c2e5df]">
+              <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-[#d0e2f7]">
                 Tốc độ vượt trội, cấp đơn tự động — giá trị bảo vệ cam kết chính hãng bởi Tổng Công ty Bảo hiểm BIDV (BIC).
               </p>
             </div>
@@ -123,20 +123,20 @@ export default function HomePage() {
               ].map((item) => (
                 <div
                   key={item.step}
-                  className="rounded-[18px] bg-[#084c47] p-7 transition duration-200 hover:bg-[#0c5953] bic-btn-active border border-[#0d665f]"
+                  className="rounded-[18px] bg-[#0e2a4e] p-7 transition duration-200 hover:bg-[#11325d] bic-btn-active border border-[#143c6f]"
                 >
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f5ab19]/20 text-[#f5ab19]">
                       <Icon name={item.icon as any} size={22} />
                     </span>
-                    <span className="font-mono text-[12px] font-bold text-[#a4d4cc]">
+                    <span className="font-mono text-[12px] font-bold text-[#90c2f7]">
                       {item.step}
                     </span>
                   </div>
                   <h3 className="mt-6 text-[20px] font-bold text-white tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-[#d4eee9]">
+                  <p className="mt-3 text-[15px] leading-relaxed text-[#d0e2f7]">
                     {item.desc}
                   </p>
                 </div>
@@ -146,22 +146,22 @@ export default function HomePage() {
         </section>
 
         {/* ====================================================================
-            TILE 3 (BIC Soft Mint Canvas #f4faf8): PRODUCT CARDS
+            TILE 3 (Soft Ice Blue Canvas #f4f8fd): PRODUCT CARDS
             ==================================================================== */}
-        <section className="bg-[#f4faf8] py-20 lg:py-28 border-b border-[#cce5e1]">
+        <section className="bg-[#f4f8fd] py-20 lg:py-28 border-b border-[#cce0f5]">
           <div className="mx-auto max-w-[1280px] px-5 lg:px-8">
             <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <p className="text-[13px] font-bold uppercase tracking-[0.15em] text-[#006b66]">
+                <p className="text-[13px] font-bold uppercase tracking-[0.15em] text-[#0066cc]">
                   SẢN PHẨM CHỦ LỰC
                 </p>
-                <h2 className="mt-3 text-[34px] font-bold leading-tight tracking-[-0.02em] text-[#103b3b] lg:text-[44px]">
+                <h2 className="mt-3 text-[34px] font-bold leading-tight tracking-[-0.02em] text-[#0b2341] lg:text-[44px]">
                   Bảo hiểm chính hãng BIC trực tuyến
                 </h2>
               </div>
               <Link
                 href="/san-pham"
-                className="inline-flex items-center gap-2 text-[16px] font-bold text-[#006b66] transition-colors hover:text-[#005450]"
+                className="inline-flex items-center gap-2 text-[16px] font-bold text-[#0066cc] transition-colors hover:text-[#0052b3]"
               >
                 <span>Xem tất cả gói bảo hiểm</span>
                 <Icon name="arrow-right" size={16} />
@@ -177,46 +177,46 @@ export default function HomePage() {
         </section>
 
         {/* ====================================================================
-            TILE 4 (BIC Soft Mint Card Surface #eaf5f2 - NO BLACK): PROCESS
+            TILE 4 (Soft Sky Blue Surface #eef6ff): PROCESS
             ==================================================================== */}
-        <section id="quy-trinh" className="bg-[#eaf5f2] text-[#103b3b] py-20 lg:py-28 border-b border-[#cce5e1]">
+        <section id="quy-trinh" className="bg-[#eef6ff] text-[#0b2341] py-20 lg:py-28 border-b border-[#cce0f5]">
           <div className="mx-auto max-w-[1280px] px-5 lg:px-8">
             <div className="text-center">
-              <p className="text-[13px] font-bold uppercase tracking-[0.15em] text-[#006b66]">
+              <p className="text-[13px] font-bold uppercase tracking-[0.15em] text-[#0066cc]">
                 QUY TRÌNH ĐƠN GIẢN
               </p>
-              <h2 className="mt-3 text-[34px] font-bold leading-tight tracking-[-0.02em] text-[#103b3b] lg:text-[44px]">
+              <h2 className="mt-3 text-[34px] font-bold leading-tight tracking-[-0.02em] text-[#0b2341] lg:text-[44px]">
                 3 bước để nhận giấy chứng nhận điện tử
               </h2>
             </div>
 
             <div className="mt-16 grid gap-8 md:grid-cols-3">
-              <div className="rounded-[18px] bg-white p-8 text-center border border-[#cce5e1] shadow-sm">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#006b66] text-white font-mono text-xl font-bold">
+              <div className="rounded-[18px] bg-white p-8 text-center border border-[#cce0f5] shadow-sm">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0066cc] text-white font-mono text-xl font-bold">
                   1
                 </div>
-                <h3 className="mt-6 text-[22px] font-bold text-[#103b3b] tracking-tight">Chọn gói & Tính phí</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#577572]">
+                <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Chọn gói & Tính phí</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-[#4a6785]">
                   Chọn sản phẩm, số chỗ ngồi hoặc quyền lợi mong muốn. Hệ thống tự động tính mức phí chính xác tức thì.
                 </p>
               </div>
 
-              <div className="rounded-[18px] bg-white p-8 text-center border border-[#cce5e1] shadow-sm">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#006b66] text-white font-mono text-xl font-bold">
+              <div className="rounded-[18px] bg-white p-8 text-center border border-[#cce0f5] shadow-sm">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0066cc] text-white font-mono text-xl font-bold">
                   2
                 </div>
-                <h3 className="mt-6 text-[22px] font-bold text-[#103b3b] tracking-tight">Xác nhận & Thanh toán</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#577572]">
+                <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Xác nhận & Thanh toán</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-[#4a6785]">
                   Quét mã VietQR chuyển khoản nhanh chóng hoặc thanh toán qua thẻ ngân hàng, an toàn 100%.
                 </p>
               </div>
 
-              <div className="rounded-[18px] bg-white p-8 text-center border border-[#cce5e1] shadow-sm">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#006b66] text-white font-mono text-xl font-bold">
+              <div className="rounded-[18px] bg-white p-8 text-center border border-[#cce0f5] shadow-sm">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0066cc] text-white font-mono text-xl font-bold">
                   3
                 </div>
-                <h3 className="mt-6 text-[22px] font-bold text-[#103b3b] tracking-tight">Nhận giấy chứng nhận</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#577572]">
+                <h3 className="mt-6 text-[22px] font-bold text-[#0b2341] tracking-tight">Nhận giấy chứng nhận</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-[#4a6785]">
                   Giấy chứng nhận điện tử có mã QR của BIC được gửi thẳng vào Zalo và Email của bạn trong 2 phút.
                 </p>
               </div>
@@ -227,29 +227,29 @@ export default function HomePage() {
         {/* ====================================================================
             TILE 5 (BIC White & Gold Banner Surface): CTA & TRUST
             ==================================================================== */}
-        <section className="bg-[#f4faf8] py-20 lg:py-24">
+        <section className="bg-[#f4f8fd] py-20 lg:py-24">
           <div className="mx-auto max-w-[1280px] px-5 lg:px-8">
-            <div className="rounded-[24px] bg-white p-10 lg:p-16 text-center border border-[#cce5e1] shadow-[0_14px_40px_rgba(0,56,53,0.06)]">
-              <span className="text-[13px] font-bold uppercase tracking-[0.15em] text-[#006b66]">
+            <div className="rounded-[24px] bg-white p-10 lg:p-16 text-center border border-[#cce0f5] shadow-[0_14px_40px_rgba(7,25,47,0.06)]">
+              <span className="text-[13px] font-bold uppercase tracking-[0.15em] text-[#0066cc]">
                 SẴN SÀNG AN TÂM CÙNG BẢO AN TÂY NGUYÊN
               </span>
-              <h2 className="mt-4 text-[34px] font-bold tracking-tight text-[#103b3b] lg:text-[46px]">
+              <h2 className="mt-4 text-[34px] font-bold tracking-tight text-[#0b2341] lg:text-[46px]">
                 Tính phí và nhận bảo hiểm ngay hôm nay
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-[#577572]">
+              <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-[#4a6785]">
                 Không mất thời gian chờ đợi, không thủ tục rườm rà. Hệ thống tư vấn chính xác, cấp đơn tức thì 24/7.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Link
                   href="/bao-gia"
-                  className="rounded-full bg-[#006b66] px-8 py-3.5 text-[17px] font-semibold text-white transition-transform duration-150 hover:bg-[#005450] active:scale-95 shadow-md inline-flex items-center gap-2"
+                  className="rounded-full bg-[#0066cc] px-8 py-3.5 text-[17px] font-semibold text-white transition-transform duration-150 hover:bg-[#0052b3] active:scale-95 shadow-md inline-flex items-center gap-2"
                 >
                   <Icon name="calculator" size={18} />
                   <span>Tính phí ngay</span>
                 </Link>
                 <a
                   href="tel:0396998765"
-                  className="rounded-full border border-[#006b66] bg-transparent px-7 py-3.5 text-[17px] font-semibold text-[#006b66] transition-transform duration-150 hover:bg-[#006b66]/10 active:scale-95 inline-flex items-center gap-2"
+                  className="rounded-full border border-[#0066cc] bg-transparent px-7 py-3.5 text-[17px] font-semibold text-[#0066cc] transition-transform duration-150 hover:bg-[#0066cc]/10 active:scale-95 inline-flex items-center gap-2"
                 >
                   <Icon name="phone" size={18} />
                   <span>Gọi SĐT: 0396998765</span>

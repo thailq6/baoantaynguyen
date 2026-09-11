@@ -13,18 +13,18 @@ export default function GuidePage() {
   return (
     <InteriorPage
       eyebrow="CẨM NANG BẢO HIỂM"
-      title={<>Kiến thức bảo hiểm chuẩn xác,<br /><span className="text-[#006b66]">giải thích minh bạch và dễ hiểu.</span></>}
+      title={<>Kiến thức bảo hiểm chuẩn xác,<br /><span className="text-[#0066cc]">giải thích minh bạch và dễ hiểu.</span></>}
       intro="Tổng hợp thông tin pháp lý, kinh nghiệm mua bảo hiểm và hướng dẫn bồi thường chuẩn xác từ Bảo An Tây Nguyên."
     >
       <section className="mx-auto grid max-w-[1240px] gap-6 px-5 py-16 md:grid-cols-3 lg:px-8">
         {posts.map(([n, t, d]) => (
-          <article key={n} className="flex flex-col justify-between rounded-[8px] border border-[#d5e5e2] bg-[#ffffff] p-6 transition duration-200 hover:border-[#006b66]">
+          <article key={n} className="flex flex-col justify-between rounded-[8px] border border-[#cce0f5] bg-[#ffffff] p-6 transition duration-200 hover:border-[#0066cc]">
             <div>
-              <span className="font-mono text-xs font-semibold text-[#006b66]">{n} // GUIDE</span>
-              <h2 className="mt-4 text-lg font-semibold text-[#103b3b]">{t}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-[#6f8585]">{d}</p>
+              <span className="font-mono text-xs font-semibold text-[#0066cc]">{n} // GUIDE</span>
+              <h2 className="mt-4 text-lg font-semibold text-[#0b2341]">{t}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-[#4a6785]">{d}</p>
             </div>
-            <Link href="/lien-he" className="mt-6 inline-flex text-xs font-semibold text-[#006b66] hover:text-[#0b8f86]">
+            <Link href="/lien-he" className="mt-6 inline-flex text-xs font-semibold text-[#0066cc] hover:text-[#0052b3]">
               Tư vấn trực tuyến ↗
             </Link>
           </article>

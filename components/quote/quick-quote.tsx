@@ -77,19 +77,19 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
 
   const selectedPlan = quotePlans[productType][plan];
 
-  const selectClass = "w-full rounded-[11px] border border-[#cce5e1] bg-[#f4faf8] px-4 py-3 text-[15px] text-[#103b3b] outline-none transition focus:border-[#006b66] focus:bg-white";
+  const selectClass = "w-full rounded-[11px] border border-[#cce0f5] bg-[#f4f8fd] px-4 py-3 text-[15px] text-[#0b2341] outline-none transition focus:border-[#0066cc] focus:bg-white";
   const inputClass = `${selectClass} placeholder:text-[#8aa09e]`;
-  const labelClass = "mb-2 block text-[13px] font-semibold text-[#103b3b]";
+  const labelClass = "mb-2 block text-[13px] font-semibold text-[#0b2341]";
 
   return (
-    <div className={`w-full rounded-[18px] border border-[#cce5e1] bg-white p-6 shadow-[0_12px_40px_rgba(0,56,53,0.08)] ${compact ? "" : "lg:p-8"}`}>
-      <div className="flex items-start gap-3 border-b border-[#eaf5f2] pb-5">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#006b66] text-white shadow-sm">
+    <div className={`w-full rounded-[18px] border border-[#cce0f5] bg-white p-6 shadow-[0_12px_40px_rgba(7,25,47,0.08)] ${compact ? "" : "lg:p-8"}`}>
+      <div className="flex items-start gap-3 border-b border-[#eef6ff] pb-5">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0066cc] text-white shadow-sm">
           <Icon name="calculator" size={17} />
         </span>
         <div>
-          <h3 className="text-[18px] font-bold tracking-tight text-[#103b3b]">Tính phí nhanh</h3>
-          <p className="mt-1 text-[13px] leading-5 text-[#577572]">Chọn sản phẩm và nhập vài thông tin cơ bản để nhận mức phí minh họa.</p>
+          <h3 className="text-[18px] font-bold tracking-tight text-[#0b2341]">Tính phí nhanh</h3>
+          <p className="mt-1 text-[13px] leading-5 text-[#4a6785]">Chọn sản phẩm và nhập vài thông tin cơ bản để nhận mức phí minh họa.</p>
         </div>
       </div>
 
@@ -162,8 +162,8 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
                 ["maternity", "Thai sản"],
                 ["accident", "Tai nạn"],
               ].map(([name, label]) => (
-                <label key={name} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-[11px] border border-[#cce5e1] px-3 text-[13px] text-[#456464]">
-                  <input type="checkbox" checked={Boolean(fields[name])} onChange={(event) => updateField(name, event.target.checked)} className="h-4 w-4 accent-[#006b66]" />
+                <label key={name} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-[11px] border border-[#cce0f5] px-3 text-[13px] text-[#3b5878]">
+                  <input type="checkbox" checked={Boolean(fields[name])} onChange={(event) => updateField(name, event.target.checked)} className="h-4 w-4 accent-[#0066cc]" />
                   {label}
                 </label>
               ))}
@@ -234,8 +234,8 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
                 ["accident", "Thêm quyền lợi tai nạn"],
                 ["critical", "Thêm quyền lợi bệnh đặc biệt"],
               ].map(([name, label]) => (
-                <label key={name} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-[11px] border border-[#cce5e1] px-3 text-[13px] text-[#456464]">
-                  <input type="checkbox" checked={Boolean(fields[name])} onChange={(event) => updateField(name, event.target.checked)} className="h-4 w-4 accent-[#006b66]" />
+                <label key={name} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-[11px] border border-[#cce0f5] px-3 text-[13px] text-[#3b5878]">
+                  <input type="checkbox" checked={Boolean(fields[name])} onChange={(event) => updateField(name, event.target.checked)} className="h-4 w-4 accent-[#0066cc]" />
                   {label}
                 </label>
               ))}
@@ -261,7 +261,7 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
           </div>
         )}
 
-        <button type="button" onClick={calculate} className="flex w-full items-center justify-center gap-2 rounded-full bg-[#006b66] px-6 py-3.5 text-[15px] font-semibold text-white shadow-sm transition hover:bg-[#005450] active:scale-[0.98]">
+        <button type="button" onClick={calculate} className="flex w-full items-center justify-center gap-2 rounded-full bg-[#0066cc] px-6 py-3.5 text-[15px] font-semibold text-white shadow-sm transition hover:bg-[#0052b3] active:scale-[0.98]">
           <Icon name="calculator" size={18} />
           Tính phí ngay
         </button>
@@ -291,33 +291,33 @@ function QuoteResultView({
   plan: (typeof quotePlans)[QuoteProductType]["basic"];
 }) {
   return (
-    <div className="mt-6 border-t border-dashed border-[#cce5e1] pt-6">
-      <p className="text-center text-[12px] font-semibold uppercase tracking-[0.12em] text-[#577572]">Mức phí bảo hiểm ước tính</p>
-      <p className="mt-1 text-center text-[34px] font-bold tracking-tight text-[#006b66]">
+    <div className="mt-6 border-t border-dashed border-[#cce0f5] pt-6">
+      <p className="text-center text-[12px] font-semibold uppercase tracking-[0.12em] text-[#4a6785]">Mức phí bảo hiểm ước tính</p>
+      <p className="mt-1 text-center text-[34px] font-bold tracking-tight text-[#0066cc]">
         {formatVnd(result.totalPremium)}
-        <span className="text-[15px] font-normal text-[#103b3b]"> / kỳ</span>
+        <span className="text-[15px] font-normal text-[#0b2341]"> / kỳ</span>
       </p>
-      <p className="mt-2 text-center text-[12px] leading-5 text-[#577572]">Đã bao gồm VAT 10%. Kết quả chỉ mang tính minh họa.</p>
-      <div className="mt-4 space-y-2 rounded-[12px] bg-[#f4faf8] p-4 text-[13px] text-[#456464]">
-        <div className="flex justify-between gap-4"><span>Phí trước VAT</span><strong className="text-[#103b3b]">{formatVnd(result.preTaxPremium)}</strong></div>
-        <div className="flex justify-between gap-4"><span>VAT (10%)</span><strong className="text-[#103b3b]">{formatVnd(result.vatAmount)}</strong></div>
-        <div className="flex justify-between gap-4 border-t border-[#cce5e1] pt-2 font-bold text-[#006b66]"><span>Tổng phí dự kiến</span><strong>{formatVnd(result.totalPremium)}</strong></div>
+      <p className="mt-2 text-center text-[12px] leading-5 text-[#4a6785]">Đã bao gồm VAT 10%. Kết quả chỉ mang tính minh họa.</p>
+      <div className="mt-4 space-y-2 rounded-[12px] bg-[#f4f8fd] p-4 text-[13px] text-[#3b5878]">
+        <div className="flex justify-between gap-4"><span>Phí trước VAT</span><strong className="text-[#0b2341]">{formatVnd(result.preTaxPremium)}</strong></div>
+        <div className="flex justify-between gap-4"><span>VAT (10%)</span><strong className="text-[#0b2341]">{formatVnd(result.vatAmount)}</strong></div>
+        <div className="flex justify-between gap-4 border-t border-[#cce0f5] pt-2 font-bold text-[#0066cc]"><span>Tổng phí dự kiến</span><strong>{formatVnd(result.totalPremium)}</strong></div>
       </div>
       <div className="mt-4 grid gap-2 sm:grid-cols-2">
-        <button type="button" onClick={onTogglePlanDetails} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#006b66] px-4 py-2.5 text-[14px] font-semibold text-white hover:bg-[#005450]">
+        <button type="button" onClick={onTogglePlanDetails} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0066cc] px-4 py-2.5 text-[14px] font-semibold text-white hover:bg-[#0052b3]">
           {showPlanDetails ? "Ẩn chi tiết gói" : "Xem bảng giá"}
           <Icon name={showPlanDetails ? "close" : "arrow-right"} size={15} />
         </button>
-        <a href="tel:0396998765" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#006b66] px-4 py-2.5 text-[14px] font-semibold text-[#006b66] hover:bg-[#006b66]/10"><Icon name="phone" size={15} /> Tư vấn thêm</a>
+        <a href="tel:0396998765" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#0066cc] px-4 py-2.5 text-[14px] font-semibold text-[#0066cc] hover:bg-[#0066cc]/10"><Icon name="phone" size={15} /> Tư vấn thêm</a>
       </div>
       {showPlanDetails && (
-        <div className="mt-4 rounded-[12px] border border-[#cce5e1] bg-white p-4 text-left">
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#006b66]">CHI TIẾT GÓI {plan.name.toUpperCase()}</p>
-          <p className="mt-2 text-[15px] font-bold text-[#103b3b]">{plan.summary}</p>
-          <ul className="mt-3 space-y-2 text-[13px] leading-5 text-[#577572]">
-            {plan.benefits.map((benefit) => <li key={benefit} className="flex gap-2"><Icon name="check" size={15} className="mt-0.5 shrink-0 text-[#006b66]" /><span>{benefit}</span></li>)}
+        <div className="mt-4 rounded-[12px] border border-[#cce0f5] bg-white p-4 text-left">
+          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0066cc]">CHI TIẾT GÓI {plan.name.toUpperCase()}</p>
+          <p className="mt-2 text-[15px] font-bold text-[#0b2341]">{plan.summary}</p>
+          <ul className="mt-3 space-y-2 text-[13px] leading-5 text-[#4a6785]">
+            {plan.benefits.map((benefit) => <li key={benefit} className="flex gap-2"><Icon name="check" size={15} className="mt-0.5 shrink-0 text-[#0066cc]" /><span>{benefit}</span></li>)}
           </ul>
-          <p className="mt-3 text-[12px] leading-5 text-[#6f8585]"><strong className="text-[#103b3b]">Phù hợp:</strong> {plan.bestFor}</p>
+          <p className="mt-3 text-[12px] leading-5 text-[#6b84a5]"><strong className="text-[#0b2341]">Phù hợp:</strong> {plan.bestFor}</p>
         </div>
       )}
     </div>

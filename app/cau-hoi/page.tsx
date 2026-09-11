@@ -20,18 +20,18 @@ export default function FaqPage() {
   return (
     <InteriorPage
       eyebrow="HỎI ĐÁP & HỖ TRỢ"
-      title={<>Những thắc mắc thường gặp<br /><span className="text-[#006b66]">về bảo hiểm điện tử BIC.</span></>}
+      title={<>Những thắc mắc thường gặp<br /><span className="text-[#0066cc]">về bảo hiểm điện tử BIC.</span></>}
       intro="Nếu chưa thấy câu trả lời bạn cần, hãy kết nối ngay qua SĐT 0396998765 hoặc nhắn tin Zalo Bảo An Tây Nguyên."
     >
       <section className="mx-auto max-w-[900px] px-5 py-16 lg:px-8">
-        <div className="border-t border-[#d5e5e2]">
+        <div className="border-t border-[#cce0f5]">
           {rows.map(([q, a], i) => (
-            <details key={q} open={i === 0} className="border-b border-[#d5e5e2] py-6 group">
-              <summary className="flex cursor-pointer list-none justify-between text-base font-semibold text-[#103b3b] group-open:text-[#006b66]">
+            <details key={q} open={i === 0} className="border-b border-[#cce0f5] py-6 group">
+              <summary className="flex cursor-pointer list-none justify-between text-base font-semibold text-[#0b2341] group-open:text-[#0066cc]">
                 {q}
-                <span className="text-[#006b66] text-xl leading-none">+</span>
+                <span className="text-[#0066cc] text-xl leading-none">+</span>
               </summary>
-              <p className="mt-4 text-sm leading-relaxed text-[#6f8585]">
+              <p className="mt-4 text-sm leading-relaxed text-[#4a6785]">
                 {a}
               </p>
             </details>

@@ -4,17 +4,23 @@
 
 :root {
   --font-sans: Inter, system-ui, -apple-system, "SF Pro Text", "Segoe UI", sans-serif;
-  --bic-teal: #006b66;
-  --bic-teal-hover: #005450;
-  --bic-teal-focus: #007a73;
+  --bic-blue: #0066cc;
+  --bic-blue-hover: #0052b3;
+  --bic-blue-focus: #0077ff;
+  --bic-teal: #0066cc;
+  --bic-teal-hover: #0052b3;
+  --bic-teal-focus: #0077ff;
   --bic-gold: #f5ab19;
-  --bic-forest: #003835;
-  --bic-forest-light: #084c47;
-  --bic-mint: #eaf5f2;
-  --bic-ice: #f4faf8;
-  --bic-ink: #103b3b;
-  --bic-muted: #577572;
-  --bic-border: #cce5e1;
+  --bic-navy: #07192f;
+  --bic-forest: #07192f;
+  --bic-navy-light: #0f2e54;
+  --bic-forest-light: #0f2e54;
+  --bic-ice-blue: #eef6ff;
+  --bic-mint: #eef6ff;
+  --bic-ice: #f4f8fd;
+  --bic-ink: #0b2341;
+  --bic-muted: #4a6785;
+  --bic-border: #cce0f5;
 }
 
 * {

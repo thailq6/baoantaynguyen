@@ -17,12 +17,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#cce5e1] bg-[#f4faf8]/95 backdrop-blur-xl transition-all">
+    <header className="sticky top-0 z-40 border-b border-[#cce0f5] bg-[#f4f8fd]/95 backdrop-blur-xl transition-all">
       <div className="mx-auto flex h-[64px] max-w-[1280px] items-center justify-between px-5 lg:px-8">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <img src="/image/bic-logo.png" alt="BIC" className="h-10 w-auto object-contain" />
-          <span className="text-[20px] font-bold tracking-tight text-[#006b66]">
+        {/* Brand Logo & Avatar */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <img
+            src="/image/baoan.jpg"
+            alt="Bảo An Tây Nguyên"
+            className="h-10 w-10 rounded-full object-cover border border-[#0066cc]/30 shadow-sm"
+          />
+          <img src="/image/bic-logo.png" alt="BIC" className="h-8 w-auto object-contain hidden sm:block opacity-90" />
+          <span className="text-[20px] font-bold tracking-tight text-[#0066cc]">
             Bảo An Tây Nguyên
           </span>
         </Link>
@@ -33,7 +38,7 @@ export function SiteHeader() {
             <Link
               key={href}
               href={href}
-              className="text-[15px] font-medium text-[#103b3b] transition-colors hover:text-[#006b66]"
+              className="text-[15px] font-medium text-[#0b2341] transition-colors hover:text-[#0066cc]"
             >
               {label}
             </Link>
@@ -44,14 +49,14 @@ export function SiteHeader() {
         <div className="hidden items-center gap-4 lg:flex">
           <a
             href="tel:0396998765"
-            className="inline-flex items-center gap-2 text-[14px] font-bold text-[#006b66] hover:underline"
+            className="inline-flex items-center gap-2 text-[14px] font-bold text-[#0066cc] hover:underline"
           >
             <Icon name="phone" size={16} />
             <span>SĐT: 0396998765</span>
           </a>
           <Link
             href="/bao-gia"
-            className="inline-flex items-center justify-center rounded-full bg-[#006b66] px-6 py-2.5 text-[14px] font-semibold text-white transition-transform duration-150 hover:bg-[#005450] active:scale-95 shadow-sm"
+            className="inline-flex items-center justify-center rounded-full bg-[#0066cc] px-6 py-2.5 text-[14px] font-semibold text-white transition-transform duration-150 hover:bg-[#0052b3] active:scale-95 shadow-sm"
           >
             Mua ngay
           </Link>
@@ -59,7 +64,7 @@ export function SiteHeader() {
 
         {/* Mobile hamburger */}
         <button
-          className="p-2 text-[#103b3b] lg:hidden focus:outline-none"
+          className="p-2 text-[#0b2341] lg:hidden focus:outline-none"
           aria-label={open ? "Đóng menu" : "Mở menu"}
           onClick={() => setOpen(!open)}
         >
@@ -69,22 +74,22 @@ export function SiteHeader() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="border-b border-[#cce5e1] bg-white px-6 py-5 lg:hidden animate-fadeIn">
+        <div className="border-b border-[#cce0f5] bg-white px-6 py-5 lg:hidden animate-fadeIn">
           <nav className="flex flex-col gap-4">
             {links.map(([label, href]) => (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="py-1 text-[16px] font-medium text-[#103b3b] hover:text-[#006b66]"
+                className="py-1 text-[16px] font-medium text-[#0b2341] hover:text-[#0066cc]"
               >
                 {label}
               </Link>
             ))}
-            <div className="mt-4 pt-4 border-t border-[#cce5e1] flex flex-col gap-3">
+            <div className="mt-4 pt-4 border-t border-[#cce0f5] flex flex-col gap-3">
               <a
                 href="tel:0396998765"
-                className="inline-flex items-center justify-center gap-2 text-[15px] font-bold text-[#006b66] py-2"
+                className="inline-flex items-center justify-center gap-2 text-[15px] font-bold text-[#0066cc] py-2"
               >
                 <Icon name="phone" size={18} />
                 <span>SĐT: 0396998765</span>
@@ -92,7 +97,7 @@ export function SiteHeader() {
               <Link
                 href="/bao-gia"
                 onClick={() => setOpen(false)}
-                className="w-full text-center rounded-full bg-[#006b66] py-3 text-[15px] font-semibold text-white"
+                className="w-full text-center rounded-full bg-[#0066cc] py-3 text-[15px] font-semibold text-white"
               >
                 Mua ngay
               </Link>
