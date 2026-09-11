@@ -5,6 +5,10 @@ import { calculateQuote, formatVnd } from "../../lib/quote";
 import { quotePlans } from "../../config/quote-plans";
 import type { QuoteInput, QuoteProductType, QuoteResult } from "../../types/quote";
 import { Icon } from "../ui/icon";
+import { OcrScannerModal } from "../ui/ocr-scanner-modal";
+import { ECertificateCard } from "../certificate/e-certificate-card";
+import { generateMockCertificate, sampleCertificates, type InsuranceCertificate } from "../../lib/certificate";
+import type { OcrResult } from "../../lib/ocr";
 
 type Props = {
   initialProductType?: QuoteProductType;
@@ -51,6 +55,35 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
   const [result, setResult] = useState<QuoteResult | null>(null);
   const [showPlanDetails, setShowPlanDetails] = useState(false);
 
+  const [isOcrOpen, setIsOcrOpen] = useState(false);
+  const [activeCert, setActiveCert] = useState<InsuranceCertificate | null>(null);
+
+  function handleOcrApply(data: OcrResult) {
+    if (data.vehicleType === "motorbike") {
+      setProductType("motorbike");
+    } else {
+      setProductType("auto");
+      updateField("vehicleType", data.vehicleType);
+    }
+    setFields((curr) => ({
+      ...curr,
+      scannedPlate: data.licensePlate,
+      scannedOwner: data.ownerName,
+      scannedChassis: data.chassisNumber,
+      scannedEngine: data.engineNumber,
+    }));
+    setResult(null);
+  }
+
+  function handleOpenSampleCert() {
+    const cert = generateMockCertificate(
+      String(fields.scannedPlate || "47A-888.99"),
+      String(fields.scannedOwner || "NGUYỄN VĂN AN"),
+      productType === "auto" ? "Ô tô dưới 6 chỗ" : "Xe máy mô tô 2 bánh"
+    );
+    setActiveCert(cert);
+  }
+
   function updateField(name: string, value: string | boolean) {
     setResult(null);
     setFields((current) => ({ ...current, [name]: value }));
@@ -82,16 +115,44 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
   const labelClass = "mb-2 block text-[13px] font-semibold text-[#0b2341]";
 
   return (
-    <div className={`w-full rounded-[18px] border border-[#cce0f5] bg-white p-6 shadow-[0_12px_40px_rgba(7,25,47,0.08)] ${compact ? "" : "lg:p-8"}`}>
-      <div className="flex items-start gap-3 border-b border-[#eef6ff] pb-5">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0066cc] text-white shadow-sm">
-          <Icon name="calculator" size={17} />
-        </span>
-        <div>
-          <h3 className="text-[18px] font-bold tracking-tight text-[#0b2341]">Tính phí nhanh</h3>
-          <p className="mt-1 text-[13px] leading-5 text-[#4a6785]">Chọn sản phẩm và nhập vài thông tin cơ bản để nhận mức phí minh họa.</p>
+    <div id="quick-quote-box" className={`w-full rounded-[18px] border border-[#cce0f5] bg-white p-6 shadow-[0_12px_40px_rgba(7,25,47,0.08)] ${compact ? "" : "lg:p-8"}`}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#eef6ff] pb-5 gap-3">
+        <div className="flex items-start gap-3">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0066cc] text-white shadow-sm">
+            <Icon name="calculator" size={17} />
+          </span>
+          <div>
+            <h3 className="text-[18px] font-bold tracking-tight text-[#0b2341]">Tính phí nhanh</h3>
+            <p className="mt-1 text-[13px] leading-5 text-[#4a6785]">Chọn sản phẩm và nhập vài thông tin cơ bản để nhận mức phí minh họa.</p>
+          </div>
         </div>
+        <button
+          type="button"
+          onClick={() => setIsOcrOpen(true)}
+          className="flex items-center justify-center gap-2 rounded-full border border-[#0066cc]/30 bg-[#eef6ff] px-4 py-2 text-xs font-bold text-[#0066cc] hover:bg-[#0066cc] hover:text-white transition shadow-sm"
+        >
+          <Icon name="sparkles" size={14} />
+          <span>📷 Quét Cà vẹt / CCCD (AI OCR)</span>
+        </button>
       </div>
+
+      {fields.scannedPlate && (
+        <div className="mt-4 rounded-xl border border-emerald-300 bg-emerald-50/90 p-3.5 text-xs text-emerald-950 space-y-1 shadow-sm">
+          <div className="flex items-center justify-between font-bold text-emerald-800 border-b border-emerald-200/80 pb-1">
+            <span className="flex items-center gap-1.5">
+              <Icon name="check" size={16} className="text-emerald-600" />
+              ✓ Đã tự động bóc tách & điền thông tin từ Cà vẹt xe:
+            </span>
+            <button onClick={() => setFields(defaultFields(productType))} className="text-[11px] font-normal underline text-emerald-700 hover:text-emerald-950">Xóa dữ liệu quét</button>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-0.5 pt-1 text-[11px]">
+            <div>• Biển kiểm soát: <strong className="font-mono text-emerald-900 text-xs">{String(fields.scannedPlate)}</strong></div>
+            <div>• Tên chủ xe: <strong>{String(fields.scannedOwner)}</strong></div>
+            <div>• Số khung: <strong className="font-mono">{String(fields.scannedChassis)}</strong></div>
+            <div>• Số máy: <strong className="font-mono">{String(fields.scannedEngine)}</strong></div>
+          </div>
+        </div>
+      )}
 
       <div className="mt-6 space-y-4">
         <div>
@@ -272,8 +333,25 @@ export function QuickQuote({ initialProductType = "auto", compact = false, onSel
           result={result}
           showPlanDetails={showPlanDetails}
           onTogglePlanDetails={() => setShowPlanDetails((current) => !current)}
+          onShowCertificate={handleOpenSampleCert}
           plan={selectedPlan}
         />
+      )}
+
+      {/* OCR Scanner Modal */}
+      <OcrScannerModal
+        isOpen={isOcrOpen}
+        onClose={() => setIsOcrOpen(false)}
+        onApply={handleOcrApply}
+      />
+
+      {/* e-Certificate Card Modal */}
+      {activeCert && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fadeIn overflow-y-auto">
+          <div className="my-8 w-full max-w-2xl">
+            <ECertificateCard cert={activeCert} onClose={() => setActiveCert(null)} />
+          </div>
+        </div>
       )}
     </div>
   );
@@ -283,11 +361,13 @@ function QuoteResultView({
   result,
   showPlanDetails,
   onTogglePlanDetails,
+  onShowCertificate,
   plan,
 }: {
   result: QuoteResult;
   showPlanDetails: boolean;
   onTogglePlanDetails: () => void;
+  onShowCertificate: () => void;
   plan: (typeof quotePlans)[QuoteProductType]["basic"];
 }) {
   return (
@@ -308,7 +388,10 @@ function QuoteResultView({
           {showPlanDetails ? "Ẩn chi tiết gói" : "Xem bảng giá"}
           <Icon name={showPlanDetails ? "close" : "arrow-right"} size={15} />
         </button>
-        <a href="tel:0396998765" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#0066cc] px-4 py-2.5 text-[14px] font-semibold text-[#0066cc] hover:bg-[#0066cc]/10"><Icon name="phone" size={15} /> Tư vấn thêm</a>
+        <button type="button" onClick={onShowCertificate} className="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-[14px] font-semibold text-emerald-800 hover:bg-emerald-100 transition">
+          <Icon name="shield" size={15} className="text-emerald-600" />
+          <span>Giấy chứng nhận (e-Cert)</span>
+        </button>
       </div>
       {showPlanDetails && (
         <div className="mt-4 rounded-[12px] border border-[#cce0f5] bg-white p-4 text-left">
@@ -323,3 +406,4 @@ function QuoteResultView({
     </div>
   );
 }
+

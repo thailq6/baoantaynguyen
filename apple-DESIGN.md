@@ -85,7 +85,7 @@ Sử dụng bộ font `SF Pro Display`, `Inter` hoặc `system-ui` với negativ
 - **Thành phần**:
   - Avatar đại diện thương hiệu **Bảo An Tây Nguyên** (`public/image/baoan.jpg`) hình tròn kèm Logo BIC và chữ **Bảo An Tây Nguyên** màu `#0066cc`.
   - Thanh Menu links (Trang chủ, Sản phẩm, Báo giá, Bồi thường, Giới thiệu, Cẩm nang, Liên hệ).
-  - SĐT Hotline tư vấn (`0396998765`) với icon SVG điện thoại màu `#0066cc`.
+  - SĐT Hotline tư vấn (`0916201085` / `0916 201 085`) với icon SVG điện thoại màu `#0066cc`.
   - Nút CTA primary "Mua ngay" (`#0066cc`, rounded-full).
 - **Lưu ý**: Không có thanh top-bar rườm rà ở trên cùng.
 

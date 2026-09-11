@@ -45,11 +45,11 @@ export default function HomePage() {
                   <Icon name="arrow-right" size={18} />
                 </Link>
                 <a
-                  href="tel:0396998765"
+                  href="tel:0916201085"
                   className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[#0066cc] bg-white/80 px-6 py-3.5 text-[17px] font-semibold text-[#0066cc] transition-transform duration-150 hover:bg-[#0066cc]/10 active:scale-95 shadow-sm"
                 >
                   <Icon name="phone" size={18} className="text-[#0066cc]" />
-                  <span>Tư vấn SĐT: 0396998765</span>
+                  <span>Tư vấn SĐT: 0916 201 085</span>
                 </a>
               </div>
 
@@ -248,11 +248,11 @@ export default function HomePage() {
                   <span>Tính phí ngay</span>
                 </Link>
                 <a
-                  href="tel:0396998765"
+                  href="tel:0916201085"
                   className="rounded-full border border-[#0066cc] bg-transparent px-7 py-3.5 text-[17px] font-semibold text-[#0066cc] transition-transform duration-150 hover:bg-[#0066cc]/10 active:scale-95 inline-flex items-center gap-2"
                 >
                   <Icon name="phone" size={18} />
-                  <span>Gọi SĐT: 0396998765</span>
+                  <span>Gọi SĐT: 0916 201 085</span>
                 </a>
               </div>
             </div>

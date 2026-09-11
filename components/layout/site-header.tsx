@@ -6,6 +6,7 @@ import { Icon } from "../ui/icon";
 
 const links = [
   ["Sản phẩm", "/san-pham"],
+  ["Tiện ích", "/tien-ich"],
   ["Vì sao chọn", "/#vi-sao-chon"],
   ["Quy trình", "/#quy-trinh"],
   ["Bảng giá", "/bao-gia"],
@@ -26,7 +27,6 @@ export function SiteHeader() {
             alt="Bảo An Tây Nguyên"
             className="h-10 w-10 rounded-full object-cover border border-[#0066cc]/30 shadow-sm"
           />
-          <img src="/image/bic-logo.png" alt="BIC" className="h-8 w-auto object-contain hidden sm:block opacity-90" />
           <span className="text-[20px] font-bold tracking-tight text-[#0066cc]">
             Bảo An Tây Nguyên
           </span>
@@ -48,11 +48,11 @@ export function SiteHeader() {
         {/* Right Action */}
         <div className="hidden items-center gap-4 lg:flex">
           <a
-            href="tel:0396998765"
+            href="tel:0916201085"
             className="inline-flex items-center gap-2 text-[14px] font-bold text-[#0066cc] hover:underline"
           >
             <Icon name="phone" size={16} />
-            <span>SĐT: 0396998765</span>
+            <span>SĐT: 0916 201 085</span>
           </a>
           <Link
             href="/bao-gia"
@@ -88,11 +88,11 @@ export function SiteHeader() {
             ))}
             <div className="mt-4 pt-4 border-t border-[#cce0f5] flex flex-col gap-3">
               <a
-                href="tel:0396998765"
+                href="tel:0916201085"
                 className="inline-flex items-center justify-center gap-2 text-[15px] font-bold text-[#0066cc] py-2"
               >
                 <Icon name="phone" size={18} />
-                <span>SĐT: 0396998765</span>
+                <span>SĐT: 0916 201 085</span>
               </a>
               <Link
                 href="/bao-gia"

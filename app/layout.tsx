@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import { MobileActionBar } from "../components/layout/mobile-action-bar";
+
 export const metadata: Metadata = {
   title: {
     default: "Bảo An Tây Nguyên — Mua bảo hiểm trực tuyến tiện lợi | Bảo lãnh bởi BIC",
@@ -12,8 +14,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi">
-      <body className="min-h-screen bg-[#f4faf8] text-[#103b3b] font-sans antialiased">
+      <body className="min-h-screen bg-[#f4f8fd] text-[#0b2341] font-sans antialiased pb-16 lg:pb-0">
         {children}
+        <MobileActionBar />
       </body>
     </html>
   );

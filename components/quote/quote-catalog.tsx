@@ -40,12 +40,28 @@ export function QuoteCatalog() {
     insuranceProducts[0];
   const detail = productDetails[selected[0]];
 
+  function scrollToQuote() {
+    if (typeof window !== "undefined") {
+      const el = document.getElementById("tinh-phi") || document.getElementById("quick-quote-box");
+      if (el && window.innerWidth < 1024) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }
+
   function selectCategory(value: (typeof categories)[number]["value"]) {
     setCategory(value);
     const nextProduct = insuranceProducts.find(
       (product) => value === "all" || product[3] === value,
     );
-    if (nextProduct) setSelectedSlug(nextProduct[0]);
+    if (nextProduct) {
+      setSelectedSlug(nextProduct[0]);
+    }
+  }
+
+  function handleSelectProduct(slug: string) {
+    setSelectedSlug(slug);
+    scrollToQuote();
   }
 
   return (
@@ -91,7 +107,7 @@ export function QuoteCatalog() {
             <button
               key={product[0]}
               type="button"
-              onClick={() => setSelectedSlug(product[0])}
+              onClick={() => handleSelectProduct(product[0])}
               className={`group overflow-hidden rounded-[16px] border bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(7,25,47,0.09)] ${
                 isSelected ? "border-[#0066cc] ring-2 ring-[#0066cc]/10" : "border-[#cce0f5]"
               }`}

@@ -24,11 +24,17 @@ export default function ContactPage() {
           <dl className="space-y-6 text-sm">
             <div className="rounded-[18px] border border-[#cce0f5] bg-[#ffffff] p-4">
               <dt className="font-mono text-[11px] font-semibold tracking-wider text-[#0066cc]">HOTLINE TRỰC TUYẾN</dt>
-              <dd className="mt-1 font-mono text-lg font-bold text-[#0b2341]">0396998765</dd>
+              <dd className="mt-1 font-mono text-lg font-bold text-[#0b2341]">
+                <a href="tel:0916201085" className="hover:underline">0916 201 085</a>
+              </dd>
             </div>
             <div className="rounded-[18px] border border-[#cce0f5] bg-[#ffffff] p-4">
               <dt className="font-mono text-[11px] font-semibold tracking-wider text-[#0066cc]">ZALO OA CHÍNH THỨC</dt>
-              <dd className="mt-1 text-base font-semibold text-[#0b2341]">Bảo An Tây Nguyên</dd>
+              <dd className="mt-1 text-base font-semibold text-[#0b2341]">
+                <a href="https://zalo.me/0916201085" target="_blank" rel="noreferrer" className="text-[#0066cc] hover:underline">
+                  Bảo An Tây Nguyên (0916 201 085)
+                </a>
+              </dd>
             </div>
             <div className="rounded-[18px] border border-[#cce0f5] bg-[#ffffff] p-4">
               <dt className="font-mono text-[11px] font-semibold tracking-wider text-[#0066cc]">ĐỐI TÁC BẢO HIỂM</dt>

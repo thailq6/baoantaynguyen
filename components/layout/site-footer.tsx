@@ -13,7 +13,6 @@ export function SiteFooter() {
               alt="Bảo An Tây Nguyên"
               className="h-9 w-9 rounded-full object-cover border border-[#0066cc]/50"
             />
-            <img src="/image/bic-logo.png" alt="BIC" className="h-8 w-auto object-contain brightness-110" />
             <span className="text-[18px] font-bold tracking-tight text-white">Bảo An Tây Nguyên</span>
           </div>
           <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-[#94a3b8]">
@@ -54,9 +53,10 @@ export function SiteFooter() {
           <ul className="space-y-1 text-[14px] leading-[2.2]">
             {[
               ["Quy trình Bồi thường số", "/boi-thuong"],
+              ["Tra cứu Phạt nguội CSGT", "/tien-ich"],
               ["Câu hỏi thường gặp (FAQ)", "/cau-hoi"],
               ["Cẩm nang Luật bảo hiểm", "/cam-nang"],
-              ["Tra cứu Hợp đồng BIC", "/cau-hoi"],
+              ["Tra cứu Hợp đồng BIC", "/tra-cuu"],
               ["Trung tâm tư vấn 24/7", "/lien-he"],
             ].map(([t, h]) => (
               <li key={t}>
@@ -75,11 +75,11 @@ export function SiteFooter() {
           <div className="space-y-2 text-[14px] text-[#cbd5e1]">
             <p className="flex items-center gap-2">
               <Icon name="phone" size={15} className="text-[#60a5fa]" />
-              <span>SĐT: <a href="tel:0396998765" className="font-mono font-bold text-[#60a5fa] hover:underline">0396998765</a></span>
+              <span>SĐT: <a href="tel:0916201085" className="font-mono font-bold text-[#60a5fa] hover:underline">0916 201 085</a></span>
             </p>
             <p className="flex items-center gap-2">
               <Icon name="message" size={15} className="text-[#60a5fa]" />
-              <span>Zalo OA: <a href="https://zalo.me" target="_blank" rel="noreferrer" className="text-[#60a5fa] font-semibold hover:underline">Bảo An Tây Nguyên</a></span>
+              <span>Zalo OA: <a href="https://zalo.me/0916201085" target="_blank" rel="noreferrer" className="text-[#60a5fa] font-semibold hover:underline">Bảo An Tây Nguyên (0916 201 085)</a></span>
             </p>
             <p className="text-[13px] text-[#94a3b8] mt-3 leading-relaxed">
               Đơn vị bảo lãnh: Tổng Công ty Bảo hiểm BIDV (BIC) — Top 5 Bảo hiểm phi nhân thọ uy tín nhất Việt Nam.
