@@ -10,14 +10,6 @@ type Props = {
   onApply: (data: OcrResult) => void;
 };
 
-/** Render a value or a placeholder dash when the OCR couldn't extract it */
-function Val({ value, mono }: { value?: string; mono?: boolean }) {
-  if (!value || value.trim().length === 0) {
-    return <span className="text-[#6b84a5] italic">—</span>;
-  }
-  return <strong className={mono ? "font-mono" : ""}>{value}</strong>;
-}
-
 export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -54,6 +46,32 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
     }
   }
 
+  function handleFieldChange(field: keyof OcrResult, value: string) {
+    if (!ocrData) return;
+    const updated = { ...ocrData, [field]: value };
+
+    const parseableFields = [
+      updated.licensePlate,
+      updated.ownerName,
+      updated.address,
+      updated.vehicleBrand,
+      updated.vehicleModel,
+      updated.vehicleColor,
+      updated.engineNumber,
+      updated.chassisNumber,
+      updated.engineCapacity,
+      updated.capacitySeats,
+      updated.firstRegistrationDate,
+    ];
+    updated.fieldsFound = parseableFields.filter(
+      (f) => f && String(f).trim().length > 0
+    ).length;
+    updated.confidenceScore =
+      Math.round((updated.fieldsFound / updated.fieldsTotal) * 100) / 100;
+
+    setOcrData(updated);
+  }
+
   function handleApplyData() {
     if (ocrData) {
       onApply(ocrData);
@@ -68,7 +86,6 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
     setShowRawText(false);
   }
 
-  const hasUsefulData = ocrData && ocrData.fieldsFound > 0;
   const confidencePct = ocrData ? Math.round(ocrData.confidenceScore * 100) : 0;
 
   return (
@@ -81,8 +98,10 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
               <Icon name="sparkles" size={18} />
             </span>
             <div>
-              <h3 className="text-lg font-bold text-[#0b2341]">OCR Scanner</h3>
-              <p className="text-xs text-[#4a6785]">Scan Cà vẹt xe / CCCD &mdash; Tự động bóc tách thông tin</p>
+              <h3 className="text-lg font-bold text-[#0b2341]">OCR Scanner Cà Vẹt Xe</h3>
+              <p className="text-xs text-[#4a6785]">
+                Tự động quét &amp; hỗ trợ gõ chỉnh sửa trực tiếp
+              </p>
             </div>
           </div>
           <button
@@ -93,23 +112,36 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
           </button>
         </div>
 
-        {/* Content Body */}
+        {/* Body Content */}
         <div className="mt-5 space-y-4">
           {!previewUrl ? (
             <label className="flex flex-col items-center justify-center rounded-[16px] border-2 border-dashed border-[#cce0f5] bg-[#f4f8fd] p-8 text-center cursor-pointer hover:border-[#0066cc] transition">
               <Icon name="shield" size={40} className="text-[#0066cc] mb-2" />
-              <p className="text-sm font-bold text-[#0b2341]">Tải ảnh Giấy đăng ký xe (Cà vẹt) hoặc CCCD</p>
-              <p className="mt-1 text-xs text-[#4a6785]">Hỗ trợ định dạng PNG, JPG, WEBP (Tối đa 10MB)</p>
+              <p className="text-sm font-bold text-[#0b2341]">
+                Tải ảnh Giấy đăng ký xe (Cà vẹt) hoặc CCCD
+              </p>
+              <p className="mt-1 text-xs text-[#4a6785]">
+                Hỗ trợ định dạng PNG, JPG, WEBP (Tối đa 10MB)
+              </p>
               <span className="mt-4 rounded-full bg-[#0066cc] px-5 py-2 text-xs font-semibold text-white shadow-sm">
                 Chọn tệp ảnh
               </span>
-              <input type="file" accept="image/*" className="hidden" onChange={handleFileSelect} />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileSelect}
+              />
             </label>
           ) : (
             <div className="relative overflow-hidden rounded-[16px] border border-[#cce0f5] bg-[#07192f] p-2 aspect-[16/9] flex items-center justify-center">
-              <img src={previewUrl} alt="Preview" className="h-full w-full object-contain rounded-[12px]" />
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="h-full w-full object-contain rounded-[12px]"
+              />
 
-              {/* Laser Scanning Animation */}
+              {/* Laser Scan Animation */}
               {isScanning && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-[2px]">
                   <div className="w-full h-1 bg-[#f5ab19] shadow-[0_0_15px_#f5ab19] animate-pulse"></div>
@@ -121,38 +153,170 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
             </div>
           )}
 
-          {/* Parsed Result Display */}
+          {/* Results + Editable Input Grid */}
           {ocrData && (
             <div className="rounded-[16px] border border-[#cce0f5] bg-[#eef6ff] p-4 text-xs space-y-3">
-              {/* Confidence header */}
+              {/* Header Status Bar */}
               <div className="flex items-center justify-between border-b border-[#cce0f5] pb-2">
-                <span className={`font-bold ${confidencePct > 30 ? "text-[#0066cc]" : "text-[#f5ab19]"}`}>
-                  {hasUsefulData ? (
-                    <>Trích xuất {ocrData.fieldsFound}/{ocrData.fieldsTotal} trường ({confidencePct}%)</>
-                  ) : (
-                    <>Không nhận dạng được thông tin cà vẹt trong ảnh này</>
-                  )}
+                <span className="font-bold text-[#0066cc]">
+                  Trích xuất {ocrData.fieldsFound}/{ocrData.fieldsTotal} trường ({confidencePct}%)
                 </span>
-                {ocrData.licensePlate && (
-                  <span className="font-mono font-extrabold text-[#0b2341]">{ocrData.licensePlate}</span>
-                )}
+                <span className="text-[11px] font-semibold text-[#4a6785]">
+                  ✏️ Bạn có thể gõ sửa trực tiếp bên dưới
+                </span>
               </div>
 
-              {/* Data Grid */}
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-[#0b2341]">
-                <div><span className="text-[#4a6785]">Biển số:</span> <Val value={ocrData.licensePlate} mono /></div>
-                <div><span className="text-[#4a6785]">Chủ xe:</span> <Val value={ocrData.ownerName} /></div>
-                <div><span className="text-[#4a6785]">Số khung:</span> <Val value={ocrData.chassisNumber} mono /></div>
-                <div><span className="text-[#4a6785]">Số máy:</span> <Val value={ocrData.engineNumber} mono /></div>
-                <div><span className="text-[#4a6785]">Nhãn hiệu:</span> <Val value={ocrData.vehicleBrand} /></div>
-                <div><span className="text-[#4a6785]">Dòng xe:</span> <Val value={ocrData.vehicleModel} /></div>
-                <div><span className="text-[#4a6785]">Màu sơn:</span> <Val value={ocrData.vehicleColor} /></div>
-                <div><span className="text-[#4a6785]">Số chỗ:</span> <Val value={ocrData.capacitySeats} /></div>
-                <div><span className="text-[#4a6785]">Dung tích:</span> <Val value={ocrData.engineCapacity ? `${ocrData.engineCapacity} cc` : ""} /></div>
-                <div><span className="text-[#4a6785]">Đăng ký:</span> <Val value={ocrData.firstRegistrationDate} /></div>
-                {ocrData.address && (
-                  <div className="col-span-2"><span className="text-[#4a6785]">Địa chỉ:</span> <Val value={ocrData.address} /></div>
-                )}
+              {/* Editable Input Grid */}
+              <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[#0b2341]">
+                {/* Biển số xe */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">
+                    Biển số xe: <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={ocrData.licensePlate}
+                    onChange={(e) => handleFieldChange("licensePlate", e.target.value)}
+                    placeholder="VD: 47A-349.54"
+                    className={`w-full rounded-xl border px-3 py-1.5 text-xs font-mono font-bold text-[#0b2341] outline-none transition ${
+                      !ocrData.licensePlate
+                        ? "border-[#f5ab19] bg-[#fffdf5] focus:border-[#0066cc]"
+                        : "border-[#cce0f5] bg-white focus:border-[#0066cc]"
+                    }`}
+                  />
+                </div>
+
+                {/* Tên chủ xe */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">
+                    Chủ xe: <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={ocrData.ownerName}
+                    onChange={(e) => handleFieldChange("ownerName", e.target.value)}
+                    placeholder="VD: TRẦN TRỌNG ANH"
+                    className={`w-full rounded-xl border px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none transition ${
+                      !ocrData.ownerName
+                        ? "border-[#f5ab19] bg-[#fffdf5] focus:border-[#0066cc]"
+                        : "border-[#cce0f5] bg-white focus:border-[#0066cc]"
+                    }`}
+                  />
+                </div>
+
+                {/* Số khung */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">Số khung:</label>
+                  <input
+                    type="text"
+                    value={ocrData.chassisNumber}
+                    onChange={(e) => handleFieldChange("chassisNumber", e.target.value)}
+                    placeholder="VD: 3GS1L2466644"
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-mono font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
+
+                {/* Số máy */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">Số máy:</label>
+                  <input
+                    type="text"
+                    value={ocrData.engineNumber}
+                    onChange={(e) => handleFieldChange("engineNumber", e.target.value)}
+                    placeholder="VD: 2GD0816053"
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-mono font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
+
+                {/* Nhãn hiệu */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">Nhãn hiệu:</label>
+                  <input
+                    type="text"
+                    value={ocrData.vehicleBrand || ""}
+                    onChange={(e) => handleFieldChange("vehicleBrand", e.target.value)}
+                    placeholder="VD: TOYOTA"
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
+
+                {/* Dòng xe */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">Dòng xe:</label>
+                  <input
+                    type="text"
+                    value={ocrData.vehicleModel || ""}
+                    onChange={(e) => handleFieldChange("vehicleModel", e.target.value)}
+                    placeholder="VD: FORTUNER"
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
+
+                {/* Màu sơn */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">Màu sơn:</label>
+                  <input
+                    type="text"
+                    value={ocrData.vehicleColor || ""}
+                    onChange={(e) => handleFieldChange("vehicleColor", e.target.value)}
+                    placeholder="VD: Bạc"
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
+
+                {/* Số chỗ ngồi */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">
+                    Số chỗ ngồi: <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={ocrData.capacitySeats || ""}
+                    onChange={(e) => handleFieldChange("capacitySeats", e.target.value)}
+                    placeholder="VD: 5 chỗ hoặc 7 chỗ"
+                    className={`w-full rounded-xl border px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none transition ${
+                      !ocrData.capacitySeats
+                        ? "border-[#f5ab19] bg-[#fffdf5] focus:border-[#0066cc]"
+                        : "border-[#cce0f5] bg-white focus:border-[#0066cc]"
+                    }`}
+                  />
+                </div>
+
+                {/* Dung tích */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">Dung tích:</label>
+                  <input
+                    type="text"
+                    value={ocrData.engineCapacity || ""}
+                    onChange={(e) => handleFieldChange("engineCapacity", e.target.value)}
+                    placeholder="VD: 2393 cc"
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
+
+                {/* Ngày đăng ký */}
+                <div>
+                  <label className="text-[#4a6785] font-bold block mb-1">Ngày đăng ký:</label>
+                  <input
+                    type="text"
+                    value={ocrData.firstRegistrationDate || ""}
+                    onChange={(e) => handleFieldChange("firstRegistrationDate", e.target.value)}
+                    placeholder="VD: 12/08/2020"
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
+
+                {/* Địa chỉ */}
+                <div className="col-span-2">
+                  <label className="text-[#4a6785] font-bold block mb-1">Địa chỉ chủ xe:</label>
+                  <input
+                    type="text"
+                    value={ocrData.address || ""}
+                    onChange={(e) => handleFieldChange("address", e.target.value)}
+                    placeholder="VD: Thôn 3, Ea Tiêu, Cư Kuin..."
+                    className="w-full rounded-xl border border-[#cce0f5] bg-white px-3 py-1.5 text-xs font-bold text-[#0b2341] outline-none focus:border-[#0066cc]"
+                  />
+                </div>
               </div>
 
               {/* Raw text toggle */}
@@ -161,13 +325,19 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
                   onClick={() => setShowRawText(!showRawText)}
                   className="flex items-center gap-1.5 text-[11px] font-semibold text-[#0066cc] hover:text-[#0052b3] transition"
                 >
-                  <span className={`inline-block transition-transform ${showRawText ? "rotate-90" : ""}`}>
+                  <span
+                    className={`inline-block transition-transform ${
+                      showRawText ? "rotate-90" : ""
+                    }`}
+                  >
                     <Icon name="arrow-right" size={12} />
                   </span>
-                  <span>{showRawText ? "Ẩn" : "Xem"} raw text OCR ({ocrData.rawExtractedText.length} ký tự)</span>
+                  <span>
+                    {showRawText ? "Ẩn" : "Xem"} raw text OCR ({ocrData.rawExtractedText.length} ký tự)
+                  </span>
                 </button>
                 {showRawText && (
-                  <pre className="mt-2 max-h-40 overflow-y-auto rounded-xl bg-[#07192f] p-3 text-[10px] leading-relaxed text-[#d0e2f7] font-mono whitespace-pre-wrap break-all">
+                  <pre className="mt-2 max-h-36 overflow-y-auto rounded-xl bg-[#07192f] p-3 text-[10px] leading-relaxed text-[#d0e2f7] font-mono whitespace-pre-wrap break-all">
                     {ocrData.rawExtractedText || "(Không có text nào được trích xuất)"}
                   </pre>
                 )}
@@ -198,7 +368,7 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
             </button>
           )}
 
-          {ocrData && hasUsefulData && (
+          {ocrData && (
             <button
               onClick={handleApplyData}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-[#0066cc] py-3 text-xs font-bold text-white shadow-md hover:bg-[#0052b3]"
@@ -206,20 +376,6 @@ export function OcrScannerModal({ isOpen, onClose, onApply }: Props) {
               <Icon name="check" size={16} />
               <span>Áp dụng thông tin này vào bản tính phí</span>
             </button>
-          )}
-
-          {ocrData && !hasUsefulData && (
-            <div className="flex w-full flex-col items-center gap-2 text-center">
-              <p className="text-xs text-[#4a6785]">
-                Không trích xuất được dữ liệu. Vui lòng thử ảnh rõ nét hơn hoặc chụp lại.
-              </p>
-              <button
-                onClick={resetModal}
-                className="rounded-full bg-[#0066cc] px-6 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-[#0052b3]"
-              >
-                Thử lại với ảnh khác
-              </button>
-            </div>
           )}
         </div>
       </div>
